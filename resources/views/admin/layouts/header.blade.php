@@ -11,11 +11,11 @@
             <li class="nav-item dropdown open" style="padding-left: 15px;">
                 <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown"
                   data-toggle="dropdown" aria-expanded="false">
-                  <img src="images/img.jpg" alt="">Admin: {{Auth::user()->user_name}}
+                  <img src="images/img.jpg" alt="">Qtv: {{Auth::user()->user_name}}
                 </a>
                 <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{route('user.Editprofile')}}"> Profile</a>
-                  <a class="dropdown-item" href="{{route('dang-xuat')}}"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                <a class="dropdown-item" href="{{route('user.Editprofile',['id'=>Auth::user()->id])}}">Hồ sơ cá nhân</a>
+                  <a class="dropdown-item" href="{{route('dang-xuat')}}"><i class="fa fa-sign-out pull-right"></i>Đăng xuất</a>
                 </div>
               </li>
 

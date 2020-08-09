@@ -58,14 +58,15 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6">
                         <div class="logo_bit text-center">
-                            <a href="{{ route('client.index')}}">
+<a href="{{ route('client.index')}}">
                                 <img src="assets/client/images/menu/logo/3tm_shop.png" alt="">
                             </a>
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 ">
                         <!-- Login Form s-->
-                        <form action="{{route('xu-ly-dang-ky')}}" method="post">
+                        <form action="{{route('xu-ly-dang-ky')}}" method="post" enctype="multipart/form-data"
+                        >
                             @csrf
                             <div class="row">
                                 <div class="col-md-12 col-12 mb-20">
@@ -104,7 +105,7 @@
                                 <div class="col-md-12 mb-20">
                                     <label for="address">Địa chỉ</label>
                                     <input class="mb-0 form-control" type="text" name="address" placeholder="Address" value="{{old('address')}}"
-                                        id="address">
+id="address">
                                     @error('address')
                                     <p class="text-danger ">{{$message}}</p>
                                     @enderror
@@ -117,7 +118,13 @@
                                     <p class="text-danger ">{{$message}}</p>
                                     @enderror
                                 </div>
-
+                                <div class="col-md-12 mb-20">
+                                    <label for="password">Hình ảnh</label>
+                                    <input class="mb-0 form-control" type="file" name="Hinh" id="Hinh"/>
+                                    @error('Hinh')
+                                    <p class="text-danger ">{{$message}}</p>
+                                    @enderror
+                                </div>
                                 {{@csrf_field()}}
                                 <div class="col-12">
                                     <button type="submit" class="register-button mt-0 form-control">Đăng ký</button>
@@ -159,7 +166,7 @@
     <!-- Isotope js -->
     <script src="assets/client/js/isotope.pkgd.min.js"></script>
     <!-- Imagesloaded js -->
-    <script src="assets/client/js/imagesloaded.pkgd.min.js"></script>
+<script src="assets/client/js/imagesloaded.pkgd.min.js"></script>
     <!-- Mixitup js -->
     <script src="assets/client/js/jquery.mixitup.min.js"></script>
     <!-- Countdown -->

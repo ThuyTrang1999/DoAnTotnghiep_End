@@ -34,9 +34,8 @@ class Cart
 
     // xoa san pham vao cart
     public function DeleteItemCart($id){
-    
-        // $this->TongSL -= $this->sanpham[$id]['quanty'];
-        // $this->TongTien -=  $this->sanpham[$id]['price'];
+        $this->TongSL -= $this->sanpham[$id]['quanty'];
+        $this->TongTien -=  $this->sanpham[$id]['price'];
         unset($this->sanpham[$id]);
        
     }

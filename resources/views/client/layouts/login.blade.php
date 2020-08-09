@@ -99,7 +99,7 @@
                                         <button class="form-control register-button mt-0 ">Đăng nhập</button>
                                     </div>
                                 </div>
-                                <div class="row mt-3">
+                                <!-- <div class="row mt-3">
                                     <div class="col-lg-12 text-center">
                                         <button class="face-button btn mx-1">
                                             <i class="fa fa-facebook" aria-hidden="true"></i>
@@ -107,7 +107,7 @@
 
 
                                     </div>
-                                </div>
+                                </div> -->
                                 <p class="text-right">
                                     <a href="{{route('dang-ky')}}">Đăng ký tài khoản </a>
                                 </p>

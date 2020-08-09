@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\vendor;
+use App\customer;
 use App\user;
 class VendorController extends Controller
 {
@@ -14,7 +15,7 @@ class VendorController extends Controller
      */
     public function index(Request $request)
     {
-        $result = DB::table('vendors')->join('users', 'vendors.user_id', '=', 'users.id'); 
+        $result = DB::table('vendors')->join('customers', 'vendors.cus_id', '=', 'customers.id'); 
         if($request->search){
             $result->where('vendors.shop_name', 'like', '%' .$request->search. '%')->get();
         }
@@ -24,7 +25,7 @@ class VendorController extends Controller
     }
     public function create()
     {
-        $dataUser = user::all();
+        $dataUser = customer::all();
         return view('admin.pages.shop.add-shop', compact('dataUser'));
     }
 
@@ -40,10 +41,10 @@ class VendorController extends Controller
        
         $vendor = new vendor;
         $vendor->shop_name = $request->shop_name;
-        $vendor->user_id = $request->id_user;
+        $vendor->cus_id = $request->id_user;
         // $vendor->banner = $request->bannerFile->getClientOriginalName();
         $get_images_banner=$request->file('bannerFile');
-        $vendor->desc =  $request->desc;
+        $vendor->desc_vendor =  $request->desc;
         // $vendor->logo = $request->logoFile->getClientOriginalName();
         $get_images_logo=$request->file('logoFile');
         $vendor->status =$request->status;
@@ -80,7 +81,7 @@ class VendorController extends Controller
      */
     public function edit($id)
     {   $addVendor = vendor::find($id);
-        $dataUser = user::all();
+        $dataUser = customer::all();
         
          return view('admin.pages.shop.edit-shop', compact('addVendor', 'dataUser'));    
     }
@@ -96,9 +97,9 @@ public function update(Request $request, $id)
     {
          $addVendor = vendor::find($id);
          $addVendor->shop_name = $request->shop_name;
-         $addVendor->user_id = $request->id_user;
+         $addVendor->cus_id = $request->id_user;
          $set_images_banner=$request->file('bannerFile');
-         $addVendor->desc = $request->desc;
+         $addVendor->desc_vendor = $request->desc;
          $set_images_logo = $request->file('logoFile');
          $addVendor->status = $request->status;
 

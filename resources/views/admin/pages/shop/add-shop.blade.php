@@ -30,10 +30,10 @@ Thêm mới cửa hàng
                                 <select name="id_user" id="" class="form-control" @if(isset($addVendor))
                                     value="{{$addVendor->id_user}}" @endif>
                                     @foreach($dataUser as $data)
-                                    <option @if(isset($addVendor)) @if($data->id == $addVendor->user_id) selected
-                                        @endif value="{{ $data->id}}">{{ $data->user_name}}
+                                    <option @if(isset($addVendor)) @if($data->id == $addVendor->cus_id) selected
+                                        @endif value="{{ $data->id}}">{{ $data->name}}
                                     </option>
-                                    @endif value="{{ $data->id}}">{{ $data->user_name}}
+                                    @endif value="{{ $data->id}}">{{ $data->name}}
                                     @endforeach
                                 </select>
                             </div>

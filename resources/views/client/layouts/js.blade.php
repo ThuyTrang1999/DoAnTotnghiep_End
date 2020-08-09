@@ -61,6 +61,7 @@ new WOW().init();
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+    <!-- them sp -->
     <script>
 function AddCart(id) {
     // console.log(id);
@@ -75,43 +76,26 @@ function AddCart(id) {
     });
 }
 
-// $(document).ready(function() {
-//     $('.quanty').blur(function() {
-//         let rowId = $(this).data('id');
-//         $.ajax({
-//             url: "cap-nhat-san-pham/" + rowId,
-//             type: 'GET',
-//             dataType: 'json',
-//             data: {
-//                 quanty: $(this).val(),
-//             }
-//             success: function(data){
-//                 console.log(data);
-//             }
-//         });
-//     });
-// });
-
-// function DeleteCart(id) 
-// {
-//     // console.log(id);
-//     $.ajax({
-//         url: "xoa-san-pham/" + id,
-//         type: 'GET',
-//     }).done(function(response) {
-//         $("#change-item-cart").empty();
-//         $("#change-item-cart").html(response);
-//         alertify.success('Xoá Sản Phẩm Thành Công');
-
-//     });
-// }
+function DeleteCart(id) {
+    $.ajax({
+        url: "xoa-san-pham/" + id,
+        type: 'GET',
+    }).done(function(response) {
+        $("#change-item-cart").empty();
+        $("#change-item-cart").html(response);
+        alertify.success('Xoá Sản Phẩm Thành Công');
+        location.reload();
+    });
+}
     </script>
 
-
+    <!-- filter du lieu -->
     <script>
-        $(function (){
-            $('.orderby').change(function(){
-                $("#form_oder").submit();
-            })
-        })
+$(function() {
+    $('.orderby').change(function() {
+        $("#form_oder").submit();
+    })
+})
     </script>
+
+    <!-- thanh toán thành công -->

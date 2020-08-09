@@ -1338,7 +1338,7 @@ ul.ht-menu a:hover {
 		transition: all 0.3s ease-in-out;
 }
 .setting {
-		min-width: 150px;
+		min-width: 180px;
 }
 .currency, .language {
 		min-width: 120px;
@@ -4928,6 +4928,15 @@ span.required {
   width: 100%;
 }
 .product-short .nice-select {
+	border-radius: 0;
+	color: #242424;
+	font-size: 14px;
+	height: 30px;
+	line-height: 30px;
+	width: 320px;
+	z-index: 999;
+}
+.product-short #nice-select {
 	border-radius: 0;
 	color: #242424;
 	font-size: 14px;

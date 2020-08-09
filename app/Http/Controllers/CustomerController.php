@@ -32,6 +32,56 @@ class CustomerController extends Controller
         return view('client.index', compact('dataCustomer'));
     }
 
+    public function profileClient($id)
+    {
+
+        $Addcustomers =DB::table('customers')
+        ->find($id);
+       
+        return view('client.pages.profile', compact('Addcustomers'));
+    }
+    public function profileEditClient(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name'=>'required|max:255',
+            'phone' => 'required',
+            'address' => 'required',
+        ], [
+            'name.required' => 'Tên không được để trống.',
+            'name.max'=>':attribute Không được quá :max ký tự',
+            'phone.required' => 'Số điện thoại không được để trống.',
+            'address.required' => 'Địa chỉ không được để trống.',
+        ]);
+         $Addcustomers = customer::find($id);
+         $Addcustomers->name = $request->name;
+         $Addcustomers->gender = $request->gender;
+         $Addcustomers->address = $request->address;
+         $Addcustomers->phone = $request->phone;
+         $Addcustomers->email = $request->email;
+         if($request->hasFile('Hinh'))
+         {
+            $file = $request->file('Hinh');
+            $duoi = $file->getClientOriginalExtension();
+            if($duoi != 'jpg' && $duoi != 'png'&& $duoi != 'jpeg')
+            {
+                return redirect()->route('client.pages.profile')->with('Loi', 'Bạn chỉ được chọn file có đuôi jpg,png,jpeg ');
+            }
+            $name = $file->getClientOriginalName();
+            $Hinh = Str::random(4)."_".$name;
+           
+            while(file_exists("upload/cus_avt/".$Hinh))
+            {
+                $Hinh = Str::random(4)."_".$name;
+               
+            }
+            
+           $file->move("upload/cus_avt",$Hinh);
+            @unlink("upload/cus_avt/".$Addcustomers->avatar);
+            $Addcustomers->avatar = $Hinh;
+        }
+$Addcustomers->save();
+         return redirect()->route('client.index')->with(['thongbao' => 'Cập nhật thành công ']);
+    }
   
     public function dangNhapClient(){
         $showShop = DB::table('vendors')->get();
@@ -42,7 +92,7 @@ class CustomerController extends Controller
     public function xuLyDangNhapClient(Request $request){
         
         $email = $request->emailClient;
-        $pass = $request->passClient; 
+        $password = $request->passClient; 
 
         $this->validate($request, [ 
             'emailClient' => 'required',
@@ -57,19 +107,16 @@ class CustomerController extends Controller
         
         ]);
                        
-        if (Auth::guard('customer')->attempt(['email'=>$email , 'password'=>$pass])) {
+        if (Auth::guard('customer')->attempt(['email'=>$email , 'password'=>$password]) ) {
             return redirect()->route('client.index'); 
-
-            // alertify.success('Success message');
-            }else{
+            }
+        
+            else{
                 return redirect()->route('dang-nhap-client');
             }
-         
+        
             
-            // else {
-            // // return redirect('dang-nhap')->with('thongbao', 'Sai tên đăng nhập hoặc mật khẩu');
-            // return "Thất bại";
-            // return $mat_khau;
+        
     }
     public function dangKy(){
         
@@ -101,18 +148,35 @@ class CustomerController extends Controller
         $Addcustomers->password =  Hash::make($request->password);
         $Addcustomers->gender = $request->gender;
         $Addcustomers->address =  $request->address;
+        $Addcustomers->role =  "2";
         $Addcustomers->phone = $request->phone;
         $Addcustomers->email = $request->email;
         $Addcustomers->status = 0;
+        if($request->hasFile('Hinh'))
+{
+           $file = $request->file('Hinh');
+           $duoi = $file->getClientOriginalExtension();
+           if($duoi != 'jpg' && $duoi != 'png'&& $duoi != 'jpeg')
+           {
+               return redirect()->route('client.pages.profile')->with('Loi', 'Bạn chỉ được chọn file có đuôi jpg,png,jpeg ');
+           }
+           $name = $file->getClientOriginalName();
+           $Hinh = Str::random(4)."_".$name;
+          
+           while(file_exists("upload/cus_avt/".$Hinh))
+           {
+               $Hinh = Str::random(4)."_".$name;
+           }
+           $file->move("upload/cus_avt",$Hinh);
+           $Addcustomers->avatar = $Hinh;
+       }
         $Addcustomers->save();
-       
-        return redirect()->route('dang-nhap-client')->with('thanhcong','Thêm thành công ');
+        return redirect()->route('dang-nhap-client');
     }
 
     public function dangXuatClient(){
         Auth::guard('customer')->logout();
-        return redirect()->route('dang-nhap-client');
-        // return view('client.layouts.login');  
+        return redirect()->route('client.index');
     }
   
 

@@ -28,17 +28,17 @@
                         </a>
                         <div class="minicart-product-details">
                             <h6><a href="single-product.html">{{$item['ttsanpham']->name}}</a></h6>
-                            <span>{{$item['ttsanpham']->price}} x {{$item['quanty']}}</span>
+                            <span>{{number_format($item['ttsanpham']->price)}} x {{$item['quanty']}}</span>
                         </div>
-                        <button class="close" title="Remove">
+                        <a class="close" title="Remove" onclick="DeleteCart({{$item['ttsanpham']->id}})" href="javascript: ">
                             <i class="fa fa-close"></i>
-                        </button>
+                        </a>
                     </li>
                     @endforeach
                     @endif
                 </ul>
                 @if(Session::has("Cart") != null)
-                <p class="minicart-total">Tổng tiền: <span>{{Session::get("Cart")->TongTien}} vnđ</span></p>
+                <p class="minicart-total">Tổng tiền: <span style="font-size: 16px;">{{number_format(Session::get("Cart")->TongTien)}} vnđ</span></p>
                 @endif
                 <div class="minicart-button">
                     <a href="{{route('show_cart')}}" class="li-button li-button-fullwidth li-button-dark">

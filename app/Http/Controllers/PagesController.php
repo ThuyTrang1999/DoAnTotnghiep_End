@@ -36,6 +36,27 @@ class PagesController extends Controller
         ->whereColumn('price', '>','discout_price')->get();
       
         // San pham mua nhieu nhat
+
+        
+        $sql=DB::select('SELECT produce_id, SUM(quanlity)
+        FROM bill_details
+        GROUP BY produce_id
+        ORDER By SUM(quanlity) DESC');
+
+        $produce_bill=DB::table('produces')
+        ->join('imgs', 'produces.id', '=', 'imgs.produce_id')
+        ->join('bill_details', 'produces.id', '=', 'bill_details.produce_id')
+        // ->where(function ($query) {
+        //     $query->select('SELECT produce_id, SUM(quanlity)
+        //     FROM bill_details
+        //     GROUP BY produce_id
+        //     ORDER By SUM(quanlity) DESC');
+        // })->get();
+        ->get();
+      
+        // dd($produce_bill);
+        
+
         $MostProduct=DB::table('produces')
         ->join('vendors', 'produces.vendor_id', '=', 'vendors.id')
         ->join('imgs', 'produces.id', '=', 'imgs.produce_id')
@@ -91,13 +112,11 @@ class PagesController extends Controller
 
     // delete cart
     public function DeleteCart(Request $request){
-        $product=DB::table('produces')->join('imgs', 'produces.id', '=', 'imgs.produce_id')->where('produces.id', $request->id)->first();
-
         $id=$request->id;
         $oldCart=Session::has('Cart') ? Session::get('Cart') : null;
-        $cart = new Cart($oldCart);
-        $cart -> DeleteItemCart($id);
-        if(count($cart -> $product) > 0){
+        $newCart = new Cart($oldCart);
+        $newCart -> DeleteItemCart($id);
+        if(Count($newCart->sanpham) > 0){
             $request-> Session()->put('Cart', $newCart);
         }
         else{
@@ -139,7 +158,30 @@ class PagesController extends Controller
         return view('client.pages.about');
     }
     
+  // check login
 
+  public function checkAccount(Request $request){
+    
+        $email = Auth::guard('customer')->user()->email;
+        $password =Auth::guard('customer')->user()->password;
+        $role =Auth::guard('customer')->user()->role;
+        // dd($role);
+    
+        if (Auth::guard('customer')->attempt(['email'=>$email , 'password'=>'123456']) && $role = '1') {
+            $infoShop=DB::table('customers')
+            ->join('vendors', 'customers.id', '=', 'vendors.cus_id')
+            ->where('email','=',$email)->first();
+            return view('shop.pages.index', compact('infoShop'));
+        } else {
+            return view('client.pages.openStore');
+           
+        }
+      
+     
+
+   
+    
+}
 
 
 }

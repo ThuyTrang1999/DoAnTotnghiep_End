@@ -13,9 +13,9 @@
                                 <ul class="megamenu hb-megamenu">
                                     <li><a href="shop-left-sidebar.html">Cửa hàng</a>
                                         <ul>
-                                        @foreach($showShop as $shop)
-                                            <li><a href="#">{{$shop->shop_name}}</a></li>
-                                        @endforeach
+                                            @foreach($showShop as $shop)
+                                            <li><a href="{{route('cua-hang',['id'=>$shop->id])}}">{{$shop->shop_name}}</a></li>
+                                            @endforeach
                                         </ul>
                                     </li>
 
@@ -27,22 +27,16 @@
                             <li class="dropdown-holder"><a href="#">Sản phẩm</a>
                                 <ul class="hb-dropdown">
                                     <li><a href="{{ route('client.list-product')}}">Tất cả sản phẩm</a></li>
-                                   
-                                    <li class="sub-dropdown-holder"><a href="#">Laptop</a>
-                                        <ul class="hb-dropdown hb-sub-dropdown">
-                                            <li><a href="blog-2-column.html"></a></li>
-                                            <li><a href="blog-3-column.html">Blog 3 Column</a></li>
-                                            <li><a href="blog-left-sidebar.html">Grid Left Sidebar</a></li>
-                                            <li><a href="blog-right-sidebar.html">Grid Right Sidebar</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                  
+                                    @foreach($Category as $cate)
+                                    <li><a href="#">{{$cate->cate_name}}</a></li>
+                                    @endforeach
+
+
 
 
                                 </ul>
                             </li>
-                            
+
                             <li class="about"><a href="{{ route('about')}}">Giới thiệu</a></li>
                             <li><a href="{{ route('contact')}}">Liên hệ</a></li>
                         </ul>

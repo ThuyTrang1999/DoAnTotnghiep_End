@@ -1,11 +1,13 @@
+
+
 <div class="category-sub-menu">
     <ul>
-        <li class="has-sub"><a >Quản lý đơn hàng</a>
+        <li class="has-sub"><a>Quản lý đơn hàng</a>
             <ul>
                 <li><a href="{{route('shop.bill')}}">Xử lý đơn hàng</a></li>
             </ul>
         </li>
-        <li class="has-sub"><a >Quản lý sản phẩm</a>
+        <li class="has-sub"><a>Quản lý sản phẩm</a>
             <ul>
                 <li><a href="{{route('shopProduct.listShopProduct')}}">Danh sách sản phẩm</a></li>
                 <li><a href="{{route('shopProduct.them-moi-shop-product')}}">Thêm sản phẩm</a></li>

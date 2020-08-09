@@ -19,6 +19,7 @@ class CreateCustomersTable extends Migration
             $table->string('pass');
             $table->string('gender');
             $table->string('address');
+            $table->integer('role');
             $table->string('phone');
             $table->string('email');
             $table->integer('status');

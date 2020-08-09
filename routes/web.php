@@ -188,11 +188,14 @@ Route::prefix('shopProduct')->group(function(){
 
 // CLIENT
 //profile customer
-// Route::get('profileClient/{id}', 'CustomerController@profileClient')->name('EditprofileClient');
-// Route::post('profileClient/{id}', 'CustomerController@profileEditClient')->name('Edit-profile-client');
+Route::get('profileClient/{id}', 'CustomerController@profileClient')->name('EditprofileClient');
+Route::post('profileClient/{id}', 'CustomerController@profileEditClient')->name('xu-ly-cap-nhat');
 
 // kenh nguoi ban
 Route::get('/kenh-cua-ban', 'ShopPagesController@index')->name('client.seller');
+Route::get('/kiem-tra-tai-khoan', 'PagesController@checkAccount')->name('check-account');
+Route::get('/mo-cau-hang', 'PagesController@openStore')->name('open-store');
+Route::get('/cua-hang/id','ShopPagesController@show')->name('cua-hang');
 
 // group shop
 Route::prefix('shop')->group(function(){
@@ -239,32 +242,25 @@ Route::get('/404', function () {
 
 // Detail
 Route::get('/detail/id','ProduceController@detail' )->name('client.detail');
+Route::get('/modal/id','ProduceController@detailModal' )->name('modalshow');
 
 // Rating
 Route::post('/detail/rating','ProduceController@rating' )->name('client.rating');
 
 // cart
 Route::get('/gio-hang','PagesController@ShowCart' )->name('show_cart');
-
 Route::get('/them-san-pham/{id}','PagesController@AddCart' )->name('add_cart');
 Route::get('/cap-nhat-san-pham/{id}','PagesController@UpdateCart' )->name('update_cart');
 Route::get('/xoa-san-pham/{id}','PagesController@DeleteCart' )->name('delete_cart');
-
-// thanh toan
-Route::get('/thanh-toan','BillController@postCheckout' )->name('checkout');
-Route::post('/luu-gio-hang','BillController@saveCheckoutCustommer' )->name('save_checkout_custommer');
-
-
 
 // search
 Route::get('/search','PagesController@getSearch' )->name('search');
 Route::get('/ket-qua-tim-kiem','PagesController@getSearchResult' )->name('searchResult');
 
 // Thanh toan
-Route::post('/dat-hang',[
-    'as'=>'dathang',
-    'uses'=>'PagesController@postCheckout'
-]);
+Route::get('/thanh-toan','BillController@postCheckout' )->name('checkout');
+Route::post('/luu-gio-hang','BillController@saveCheckoutCustommer' )->name('save_checkout_custommer');
+Route::post('/dat-hang',['as'=>'dathang','uses'=>'PagesController@postCheckout']);
     
-
-Route::get('/san-phan-yeu-thich/{id}','WishlistController@wishList' )->name('wishlist');
+// San Pham yeu thich
+Route::get('/san-phan-yeu-thich/{id}','WishlistController@addWishlist' )->name('wishlist');

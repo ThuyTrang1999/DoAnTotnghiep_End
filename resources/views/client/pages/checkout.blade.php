@@ -39,12 +39,13 @@ Thanh toán
                 </div>
             </div>
         </div>
-        <form action="{{route('save_checkout_custommer')}}" method="POST">
-                {{csrf_field()}}
-        <div class="row">
-            
-                <div class="col-lg-6 col-12">
 
+        <form action="{{route('save_checkout_custommer')}}" method="POST">
+            {{csrf_field()}}
+
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    @if (Auth::guard('customer')->check())
                     <div class="checkbox-form">
                         <h3>
                             <font style="vertical-align: inherit;">
@@ -64,7 +65,9 @@ Thanh toán
                                             </font>
                                         </span>
                                     </label>
-                                    <input placeholder="Nhập hộ tên đầy đủ" name="cus_name" type="text">
+                                    <input placeholder="Nhập hộ tên đầy đủ" 
+                                        value="{{ Auth::guard('customer')->user()->name }}" 
+                                        name="cus_name" type="text">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -78,10 +81,18 @@ Thanh toán
                                             </font>
                                         </span>
                                     </label>
-                                    <select name="cus_gender" id="gender" style="border: 1px solid #eee;">
-                                        <option value="Nam">Nam</option>
-                                        <option value="Nữ">Nữ</option>
+                                    <select name="cus_gender" id="gender" style="border: 1px solid #eee;"
+                                        @if(isset($infoCustommer)) value="{{$infoCustommer->gender}}" @endif>
+                                        @foreach($dataUser as $data)
+                                        <option @if(isset($infoCustommer)) @if($data->gender == $infoCustommer->gender)
+                                            selected
+                                            @endif value="{{$data->gender}}">{{ $data->gender}}
+                                        </option>
+                                        @endif value="{{$data->gender}}">{{ $data->gender}}
+                                        @endforeach
                                     </select>
+
+
 
                                 </div>
                             </div>
@@ -93,7 +104,8 @@ Thanh toán
                                             <font style="vertical-align: inherit;">Số điện thoại</font>
                                         </font>
                                     </label>
-                                    <input placeholder="Số điện thoại" name="cus_phone" type="text">
+                                    <input placeholder="Số điện thoại" 
+                                        value="{{ Auth::guard('customer')->user()->phone}}" name="cus_phone" type="text">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -107,7 +119,8 @@ Thanh toán
                                             </font>
                                         </span>
                                     </label>
-                                    <input placeholder="Email" name="cus_email" type="email">
+                                    <input placeholder="Email" 
+                                        value="{{ Auth::guard('customer')->user()->email}}" name="cus_email" type="email">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -121,7 +134,8 @@ Thanh toán
                                             </font>
                                         </span>
                                     </label>
-                                    <input placeholder="Địa chỉ" name="cus_address" type="text">
+                                    <input placeholder="Địa chỉ"
+                                        value="{{ Auth::guard('customer')->user()->address }}" name="cus_address" type="text">
                                 </div>
                             </div>
 
@@ -167,7 +181,7 @@ Thanh toán
                             </div>
                         </div>
                     </div>
-
+                    @endif
                 </div>
                 <div class="col-lg-6 col-12">
                     <div class="your-order">
@@ -215,7 +229,8 @@ Thanh toán
                                             </strong>
                                         </td>
 
-                                        <td class="cart-product-total"><span class="amount">{{$item['price']}}
+                                        <td class="cart-product-total"><span
+                                                class="amount">{{number_format($item['price'])}}
                                                 vnđ</span>
                                         </td>
                                     </tr>
@@ -227,18 +242,19 @@ Thanh toán
                                     <tr class="cart-subtotal">
                                         <th>
                                             <font style="vertical-align: inherit;">
-                                                <font style="vertical-align: inherit;">Tổng phụ thu</font>
+                                                <font style="vertical-align: inherit;float:left !important;">Tổng phụ
+                                                    thu</font>
                                             </font>
                                         </th>
                                         <td></td>
-                                        <td><span class="amount">{{(Session::get("Cart")->TongTien)/100}} vnđ</span>
+                                        <td><span class="amount">0</span>
                                         </td>
                                     </tr>
                                     <tr class="order-total">
                                         <th>
 
                                             <font style="vertical-align: inherit;">
-                                                <font style="vertical-align: inherit;">Tổng tiền đơn hàng</font>
+                                                <font style="vertical-align: inherit; ">Tổng tiền đơn hàng</font>
                                             </font>
                                         </th>
                                         <td></td>
@@ -247,7 +263,7 @@ Thanh toán
                                                 <span class="amount">
                                                     <font style="vertical-align: inherit;">
                                                         <font style="vertical-align: inherit;">
-                                                            {{(Session::get("Cart")->TongTien) + ((Session::get("Cart")->TongTien)/100)}}
+                                                            {{number_format(Session::get("Cart")->TongTien)}}
                                                             VNĐ</font>
                                                     </font>
                                                 </span>
@@ -342,7 +358,8 @@ Thanh toán
                                 </div>
                                 <div class="order-button-payment">
                                     <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;"><input value="Đặt hàng" type="submit">
+                                        <font style="vertical-align: inherit;">
+                                            <input value="Đặt hàng" type="submit">
                                         </font>
                                     </font>
                                 </div>
@@ -350,8 +367,9 @@ Thanh toán
                         </div>
                     </div>
                 </div>
-            
-        </div>
+
+            </div>
+
         </form>
     </div>
 </div>

@@ -21,7 +21,6 @@ class CreateBillsTable extends Migration
             $table->integer('cus_id')->unsigned();
             $table->foreign('cus_id')->references('id')->on('customers')->onDelete('cascade');
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('status');
             $table->timestamps();
         });

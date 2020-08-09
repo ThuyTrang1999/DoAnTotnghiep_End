@@ -22,14 +22,14 @@ class ShopProductController extends Controller
     public function index(Request $request)
     {   
         $categories = category::all();
-        $vendor =  Auth::user()->id;
+        $vendor =  Auth::guard('customer')->user()->id;
         $result = DB::table('imgs')
         ->join('produces', 'produces.id', '=', 'imgs.produce_id')
         ->join('categories', 'produces.category_id', '=', 'categories.id')
         ->join('brand', 'produces.brand', '=', 'brand.id')        
         ->join('vendors', 'produces.vendor_id', '=', 'vendors.id')
         
-        ->where('vendors.user_id','=',$vendor)
+        ->where('vendors.cus_id','=',$vendor)
         ->where('imgs.style','=',1);
         
         if($request->search){

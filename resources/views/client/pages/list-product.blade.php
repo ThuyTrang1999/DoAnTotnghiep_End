@@ -39,103 +39,103 @@ Trang danh sách
 
                                         <li><a href="?category_id={{$lcate->id}}">{{$lcate->cate_name}}</a></>
                                             @endforeach
-</ul>
-</div>
-
+                                    </ul>
                                 </div>
 
-
-
-
-
-
                             </div>
-                        </div>
-                        <!-- filter-sub-area end -->
-                        <!-- filter-sub-area start -->
-                        <div class="filter-sub-area pt-sm-10 pt-xs-10">
-                            <h5 class="filter-sub-titel">Giá sản phẩm</h5>
-                            <div class="categori-checkbox">
 
-                                <ul>
-                                    <li><a href="?discout_price=1">Dưới 2 triệu</a></li>
-                                    <li><a href="?discout_price=2">Từ 2 triệu đến 4 triệu</a></li>
-                                    <li><a href="?discout_price=3">Từ 4 triệu đến 7 triệu</a></li>
-                                    <li><a href="?discout_price=4">Từ 7 triệu đến 20 triệu</a></li>
-                                    <li><a href="?discout_price=5">20 triệu trở lên</a>
-                                    </li>
-                                </ul>
 
-                            </div>
-                        </div>
-                        <!-- filter-sub-area end -->
-                        <!-- filter-sub-area start -->
-                        <div class="filter-sub-area pt-sm-10 pt-xs-10">
-                            <h5 class="filter-sub-titel">Cửa hàng</h5>
-                            <div class="size-checkbox">
-                                <form action="#">
-                                    <ul>
-                                        @foreach ($listShop as $lshop)
-                                        <li><input type="checkbox" name="product-size"><a
-                                                href="#">{{$lshop->shop_name}}</a>
-                                        </li>
-                                        @endforeach
-                                    </ul>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- filter-sub-area end -->
 
+
+
+
+                        </div>
                     </div>
-                    <!--sidebar-categores-box end  -->
-                    <!-- category-sub-menu start -->
+                    <!-- filter-sub-area end -->
+                    <!-- filter-sub-area start -->
+                    <div class="filter-sub-area pt-sm-10 pt-xs-10">
+                        <h5 class="filter-sub-titel">Giá sản phẩm</h5>
+                        <div class="categori-checkbox">
+
+                            <ul>
+                                <li><a href="?discout_price=1">Dưới 2 triệu</a></li>
+                                <li><a href="?discout_price=2">Từ 2 triệu đến 4 triệu</a></li>
+                                <li><a href="?discout_price=3">Từ 4 triệu đến 7 triệu</a></li>
+                                <li><a href="?discout_price=4">Từ 7 triệu đến 20 triệu</a></li>
+                                <li><a href="?discout_price=5">20 triệu trở lên</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <!-- filter-sub-area end -->
+                    <!-- filter-sub-area start -->
+                    <div class="filter-sub-area pt-sm-10 pt-xs-10">
+                        <h5 class="filter-sub-titel">Cửa hàng</h5>
+                        <div class="size-checkbox">
+                            <form action="#">
+                                <ul>
+                                    @foreach ($listShop as $lshop)
+                                    <li>
+                                   
+                                       <a href="?vendor_id={{ $lshop->id}}">{{$lshop->shop_name}}</a>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- filter-sub-area end -->
 
                 </div>
-                <div class="col-lg-9">
-                    <!-- Begin Li's Banner Area -->
+                <!--sidebar-categores-box end  -->
+                <!-- category-sub-menu start -->
 
-                    <!-- Li's Banner Area End Here -->
-                    <!-- shop-top-bar start -->
-                    <div class="shop-top-bar mt-30">
-                        <div class="shop-bar-inner">
-                            <div class="product-view-mode">
-                                <!-- shop-item-filter-list start -->
-                                <ul class="nav shop-item-filter-list" role="tablist">
-                                    <div class="text-success">
-                                        Số sản phẩm: <span>{{count($listProduces)}}</span>
-                                    </div>
-                                </ul>
-                                <!-- shop-item-filter-list end -->
-                            </div>
+            </div>
+            <div class="col-lg-9">
+                <!-- Begin Li's Banner Area -->
 
-                        </div>
-                        <!-- product-select-box start -->
-                        <div class="product-select-box">
-                            <form action="#" method="get" id="form_oder">
-                                <div class="product-short">
-                                    <p>Sắp xếp:</p>
-                                    <select class="orderby" id="nice-select" name="orderby">
-                                        <option value="md">--- Tất cả ---</option>
-                                        <option value="desc">Sản phẩm mới nhất </option>
-                                        <option value="asc">Sản phẩm cũ</option>
-                                        <option value="price_max">Giá cao nhất</option>
-                                        <option value="price_min">Giá thấp nhất</option>
-                                    </select>
+                <!-- Li's Banner Area End Here -->
+                <!-- shop-top-bar start -->
+                <div class="shop-top-bar mt-30">
+                    <div class="shop-bar-inner">
+                        <div class="product-view-mode">
+                            <!-- shop-item-filter-list start -->
+                            <ul class="nav shop-item-filter-list" role="tablist">
+                                <div class="text-success">
+                                    Số sản phẩm: <span>{{count($listProduces)}}</span>
                                 </div>
-                            </form>
-
+                            </ul>
+                            <!-- shop-item-filter-list end -->
                         </div>
-                        <!-- product-select-box end -->
+
                     </div>
-                    <!-- shop-top-bar end -->
-                    <!-- shop-products-wrapper start -->
-                    <div class="shop-products-wrapper">
-                        <div class="tab-content">
-                            <div id="grid-view" class="tab-pane fade active show" role="tabpanel">
-                                <div class="product-area shop-product-area">
-                                    <div class="row">
-                                        <!-- one product -->
-                                        @foreach($listProduces as $lproduct)
+                    <!-- product-select-box start -->
+                    <div class="product-select-box">
+                        <form action="#" method="get" id="form_oder">
+                            <div class="product-short">
+                                <p>Sắp xếp:</p>
+                                <select class="orderby" id="nice-select" name="orderby">
+                                    <option value="md">--- Tất cả ---</option>
+                                    <option value="desc">Sản phẩm mới nhất </option>
+                                    <option value="asc">Sản phẩm cũ</option>
+                                    <option value="price_max">Giá cao nhất</option>
+                                    <option value="price_min">Giá thấp nhất</option>
+                                </select>
+                            </div>
+                        </form>
+
+                    </div>
+                    <!-- product-select-box end -->
+                </div>
+                <!-- shop-top-bar end -->
+                <!-- shop-products-wrapper start -->
+                <div class="shop-products-wrapper">
+                    <div class="tab-content">
+                        <div id="grid-view" class="tab-pane fade active show" role="tabpanel">
+                            <div class="product-area shop-product-area">
+                                <div class="row">
+                                    <!-- one product -->
+                                    @foreach($listProduces as $lproduct)
                                     <div class="col-lg-3 col-md-4 col-sm-6 mt-40">
                                         <!-- single-product-wrap start -->
                                         <div class="single-product-wrap">
@@ -150,9 +150,10 @@ Trang danh sách
                                                 <div class="product_desc_info">
                                                     <div class="product-review">
                                                         <h5 class="manufacturer">
-                                                            <a href="{{route('client.detail')}}">ten shop</a>
+                                                            <a
+                                                                href="{{route('cua-hang',['id'=>$lproduct->vendor_id])}}">{{ $lproduct->shop_name}}</a>
                                                         </h5>
-                                                        <div class="rating-box">
+                                                        <!-- <div class="rating-box">
                                                             <ul class="rating">
                                                                 <li><i class="fa fa-star"></i></li>
                                                                 <li><i class="fa fa-star"></i></li>
@@ -160,7 +161,7 @@ Trang danh sách
                                                                 <li class="no-star"><i class="fa fa-star"></i></li>
                                                                 <li class="no-star"><i class="fa fa-star"></i></li>
                                                             </ul>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                     <h4><a class="product_name"
                                                             href="{{route('client.detail', ['id' => $lproduct->id])}}">{{$lproduct->name}}</a>
@@ -195,12 +196,12 @@ Trang danh sách
 
                                     </div>
                                     @endforeach
-                                        <!-- end one product -->
-                                    </div>
+                                    <!-- end one product -->
                                 </div>
                             </div>
-
-                            <div class="paginatoin-area">
+                        </div>
+                        {!! $listProduces->links() !!}
+                        <!-- <div class="paginatoin-area">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
 
@@ -220,18 +221,18 @@ Trang danh sách
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div> -->
                     </div>
-                    <!-- shop-products-wrapper end -->
                 </div>
+                <!-- shop-products-wrapper end -->
             </div>
         </div>
     </div>
-    <!-- Content Wraper Area End Here -->
+</div>
+<!-- Content Wraper Area End Here -->
 
-    <!-- Begin Quick View | Modal Area -->
-    @include('client.layouts.modal_show')
-    <!-- Quick View | Modal Area End Here -->
+<!-- Begin Quick View | Modal Area -->
+@include('client.layouts.modal_show')
+<!-- Quick View | Modal Area End Here -->
 
-    @endsection
+@endsection

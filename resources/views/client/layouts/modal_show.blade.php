@@ -5,6 +5,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
+                
                 <div class="modal-inner-area row">
                     <div class="col-lg-5 col-md-6 col-sm-6">
                         <!-- Product Details Left -->
@@ -62,7 +63,8 @@
                     <div class="col-lg-7 col-md-6 col-sm-6">
                         <div class="product-details-view-content pt-60">
                             <div class="product-info">
-                                <h2>Today is a good day Framed poster</h2>
+                                <h2>qưertyui</h2>
+                               
                                 <span class="product-details-ref">Reference: demo_15</span>
                                 <div class="rating-box pt-20">
                                     <ul class="rating rating-with-review-item">
@@ -110,6 +112,7 @@
                         </div>
                     </div>
                 </div>
+              
             </div>
         </div>
     </div>

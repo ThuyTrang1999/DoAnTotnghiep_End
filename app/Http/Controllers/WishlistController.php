@@ -14,7 +14,6 @@ class WishlistController extends Controller
         $wishlist->cus_id = Auth::guard('customer')->id();
         $wishlist->produce_id= $id;
         $wishlist->status = 1;
-        // dd($wishlist);
         $wishlist->save();
         return redirect()->back();
     }

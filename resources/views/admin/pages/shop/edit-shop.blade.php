@@ -30,9 +30,9 @@ Cập nhật cửa hàng
                                     value="{{$addVendor->id_user}}" @endif>
                                     @foreach($dataUser as $data)
                                     <option @if(isset($addVendor)) @if($data->id == $addVendor->user_id) selected
-                                        @endif value="{{ $data->id}}">{{ $data->user_name}}
+                                        @endif value="{{ $data->id}}">{{ $data->name}}
                                     </option>
-                                    @endif value="{{ $data->id}}">{{ $data->user_name}}
+                                    @endif value="{{ $data->id}}">{{ $data->name}}
                                     @endforeach
                                 </select>
                             </div>
@@ -61,8 +61,8 @@ Cập nhật cửa hàng
                             <label class="control-label col-md-2 col-sm-2 ">Desc</label>
                             <div class="col-md-10 col-sm-10 ">
                                 <textarea name="desc" class="form-control" id="" cols="10" rows="5"
-                                    placeholder="Desc.....">@if(isset($addVendor)) {{ $addVendor->desc}}
-                                    @endif</textarea>
+                                    placeholder="Desc....." > @if(isset($addVendor)) {{ $addVendor->desc_vendor}} @endif  
+                                    </textarea>
                             </div>
                         </div>
                         <div class="form-group row col-md-6 col-sm-6 ">

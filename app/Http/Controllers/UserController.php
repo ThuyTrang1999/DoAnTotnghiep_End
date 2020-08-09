@@ -237,8 +237,8 @@ $addUser->address = $request->address;
          $addUser->num_order = "1";
          $addUser->gender = $request->gender;
          $addUser->birthday = $request->birthday;
-         $addUser->role = $request->role;
-         $addUser->status = $request->status;
+         $addUser->role = '1';
+         $addUser->status = '1';
          if($request->hasFile('Hinh'))
          {
             $file = $request->file('Hinh');

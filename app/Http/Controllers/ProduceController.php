@@ -47,56 +47,78 @@ class ProduceController extends Controller
     }
     public function select(Request $request)
     {
-       
         $listCate = DB::table('categories')->get();
         $listShop=DB::table('vendors')->get();
 
        if($request->key_word){
             $result=DB::table('produces')
             ->join('imgs', 'produces.id', '=', 'imgs.produce_id')
+            ->join('vendors', 'vendors.id', '=', 'produces.vendor_id')
             ->where('produces.name', 'like', '%' .$request->key_word. '%');
        }
-       else if($request->category_id){
-        $category_id = $request->category_id;
-        $Produce=DB::table('produces')
-        ->join('imgs', 'produces.id', '=', 'imgs.produce_id');
-        switch ($category_id ){
-            case '1':
-                $result=$Produce->where('category_id', '=', 1); break;
-            case '2':
-                $result=$Produce->where('category_id', '=', 2); break;
-            case '3':
-                $result=$Produce->where('category_id', '=', 3); break;
-
-            case '4':
-                $result=$Produce->where('category_id', '=', 4); break;
-        }
-    }
-        else if($request->discout_price)
+       else if($request->category_id)
         {
-            $discout_price = $request->discout_price;
+            $category_id = $request->category_id;
             $Produce=DB::table('produces')
-            ->join('imgs', 'produces.id', '=', 'imgs.produce_id');
-            switch ($discout_price ){
-                case '1':
-                    $result=$Produce->where('discout_price', '<', 2000000); break;
-                case '2':
-                    $result=$Produce->whereBetween('discout_price', [2000000, 4000000]); break;
-                case '3':
-                    $result=$Produce->whereBetween('discout_price', [4000000, 7000000]); break;
-    
-                case '4':
-                    $result=$Produce->whereBetween('discout_price', [7000000, 20000000]); break;
-                case '5':
-                     $result=$Produce->where('discout_price', '>=', 20000000 ); break;
+            ->join('imgs', 'produces.id', '=', 'imgs.produce_id')
+            ->join('vendors', 'vendors.id', '=', 'produces.vendor_id');
+                switch ($category_id ){
+                    case '1':
+                        $result=$Produce->where('category_id', '=', 1); break;
+                    case '2':
+                        $result=$Produce->where('category_id', '=', 2); break;
+                    case '3':
+                        $result=$Produce->where('category_id', '=', 3); break;
+
+                    case '4':
+                        $result=$Produce->where('category_id', '=', 4); break;
+                }
             }
+        else if($request->vendor_id){
+            $vendor_id = $request->vendor_id;
+            $Produce=DB::table('produces')
+            ->join('imgs', 'produces.id', '=', 'imgs.produce_id')
+            ->join('vendors', 'vendors.id', '=', 'produces.vendor_id');
+                switch ($vendor_id ){
+                    case '1':
+                        $result=$Produce->where('vendor_id', '=', 1); break;
+                    case '2':
+                        $result=$Produce->where('vendor_id', '=', 2); break;
+                    case '3':
+                        $result=$Produce->where('vendor_id', '=', 3); break;
+
+                    case '4':
+                        $result=$Produce->where('vendor_id', '=', 4); break;
+                }
+            
         }
+        else if($request->discout_price)
+            {
+                $discout_price = $request->discout_price;
+                $Produce=DB::table('produces')
+                ->join('imgs', 'produces.id', '=', 'imgs.produce_id')
+                ->join('vendors', 'vendors.id', '=', 'produces.vendor_id');
+                switch ($discout_price ){
+                    case '1':
+                        $result=$Produce->where('discout_price', '<', 2000000); break;
+                    case '2':
+                        $result=$Produce->whereBetween('discout_price', [2000000, 4000000]); break;
+                    case '3':
+                        $result=$Produce->whereBetween('discout_price', [4000000, 7000000]); break;
+        
+                    case '4':
+                        $result=$Produce->whereBetween('discout_price', [7000000, 20000000]); break;
+                    case '5':
+                        $result=$Produce->where('discout_price', '>=', 20000000 ); break;
+                }
+         }
     
         else if($request->orderby)
         {
             $orderby = $request->orderby;
             $Produce=DB::table('produces')
-            ->join('imgs', 'produces.id', '=', 'imgs.produce_id');
+            ->join('imgs', 'produces.id', '=', 'imgs.produce_id')
+            ->join('vendors', 'vendors.id', '=', 'produces.vendor_id');
             switch ($orderby){
                 case 'desc':
                     $result= $Produce->orderBy('produces.id', 'DESC'); break;
@@ -112,7 +134,8 @@ class ProduceController extends Controller
         }
            else{
                 $result = DB::table('produces')
-                ->join('imgs', 'produces.id', '=', 'imgs.produce_id');
+                ->join('imgs', 'produces.id', '=', 'imgs.produce_id')
+                ->join('vendors', 'vendors.id', '=', 'produces.vendor_id');
             }
             $listProduces=$result->paginate(12);
             
@@ -361,13 +384,16 @@ $imageName2 = time().$Hinh.'.'.$hinhchitiet->getClientOriginalExtension();
 
         $imgDetail=produce::join('vendors', 'produces.vendor_id', '=', 'vendors.id')
         ->join('imgs', 'produces.id', '=', 'imgs.produce_id')
-        ->where('produces.id', $req->id)->where('style','=',2)->get();
+        ->where('produces.id', $req->id)->where('style','=',2)
+        ->get();
 
         $related_product = produce::join('vendors', 'produces.vendor_id', '=', 'vendors.id')
         ->join('imgs', 'produces.id', '=', 'imgs.produce_id')
         ->whereNotIn('produces.id', [$req->id])->get();
         return view('client.pages.detail', compact('singleProduct', 'related_product','imgDetail'));
     }
+
+    
 
     public function rating(ProductCommentRequest $request)
     {
@@ -389,6 +415,8 @@ $imageName2 = time().$Hinh.'.'.$hinhchitiet->getClientOriginalExtension();
         ], Response::HTTP_OK);
     }
 
+  
+    
 
     public function filterNewProduct(){
 

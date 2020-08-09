@@ -83,7 +83,7 @@ list shop
                                                 @foreach ($listVendors as $vend)
                                                 <tr role="row" class="odd">
                                                     <td>
-                                                        {{$vend->first_name}} {{$vend->last_name}}
+                                                        {{$vend->name}} 
                                                     </td>
                                                     <td>{{$vend->shop_name}}</td>
                                                     <td class="text-center">

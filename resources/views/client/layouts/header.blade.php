@@ -11,7 +11,7 @@
                           <div class="header-top-left">
                               <ul class="phone-wrap">
                                   <li>
-                                      <a href="{{route('client.seller')}}">
+                                      <a href="{{route('check-account')}}">
                                           <i class="fa fa-shopping-bag" aria-hidden="true"></i>
 
                                           <span>Kênh người bán</span>
@@ -25,53 +25,48 @@
                       <div class="col-lg-9 col-md-8">
                           <div class="header-top-right">
                               <ul class="ht-menu">
-                                  @if ((Auth::guard('customer')->check()) != null)
+                                  @if (Auth::guard('customer')->check() != null)
                                   <li>
-                                  
-                                  <span>Đăng nhập thành công</span>
-                                    
+                                      <span>{{Auth::guard('customer')->user()->name}}</span>
                                   </li>
                                   <li>
-                                    
                                       <div class="ht-setting-trigger is-active">
-                                      <div class="avatar_pic">
-                                        <img src="#" class="img_avatar_pic" alt="avatar">
-                                        </div>
-                                    </div>
-                                      
+                                          <div class="avatar_pic">
+                                              <img src="../upload/cus_avt/{{Auth::guard('customer')->user()->avatar}}"
+                                                  class="img_avatar_pic" alt="avatar"
+                                                  style="width: 40px;height: 40px; border: 3px solid #ffffff; border-radius: 50%;">
+                                          </div>
+                                      </div>
                                       <div class="setting ht-setting" style="display: none;">
                                           <ul class="ht-setting-list">
-                                              <li><a class="dropdown-item" href="#"> Profile</a></li>
+                                              <li><a href="{{route('EditprofileClient', ['id'=>Auth::guard('customer')->user()->id])}}">Hồ sơ cá nhân</a></li>
                                               <li><a href="{{route('dang-xuat-client')}}">Đăng xuất</a></li>
                                           </ul>
                                       </div>
                                   </li>
+
                                   
                                   @else
-
                                   <!-- Begin Currency Area -->
                                   <li>
                                       <a href="{{route('dang-ky')}}" id="frm_register">
                                           <i class="fa fa-user-plus pr-1"></i>
                                           <span class="currency-selector-wrapper">Đăng ký</span>
-
                                           <!-- End  modal Register-->
                                       </a>
                                   </li>
                                   <!-- Currency Area End Here -->
                                   <!-- Begin Language Area -->
-
                                   <li>
                                       <a href="{{route('dang-nhap-client')}}">
                                           <i class="fa fa-user-circle pr-1"></i>
                                           <span class="language-selector-wrapper">Đăng nhập</span>
                                           <!-- Modal Login -->
-
                                           <!-- End  modal Login-->
                                       </a>
                                   </li>
+                                  
                                   <!-- Language Area End Here -->
-
                                   @endif
                               </ul>
                           </div>

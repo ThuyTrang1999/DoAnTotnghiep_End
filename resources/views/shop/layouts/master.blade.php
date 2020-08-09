@@ -65,11 +65,7 @@
                     <div class="col-lg-3 order-2 order-lg-1">
                         <!--sidebar-categores-box start  -->
                         <div class="sidebar-categores-box mt-sm-30 mt-xs-30">
-                            <div class="sidebar-title">
-                                <h2 class="text-center">
-                                    Sky Shop
-                                </h2>
-                            </div>
+                            
                             <!-- category-sub-menu start -->
                             @include('shop.layouts.navigation_shop')
                             <!-- category-sub-menu end -->

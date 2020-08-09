@@ -69,9 +69,7 @@
                     
                   </ul>
                 </li>
-                <li><a href="{{route('admin.setting')}}"><i class="fa fa-cogs" aria-hidden="true"></i>cài đặt</a>
-                  
-                </li>
+                
                
               </ul>
             </div>

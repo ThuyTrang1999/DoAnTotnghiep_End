@@ -45,7 +45,7 @@
                                             <h5 class="manufacturer">
                                                 <a href="{{route('cua-hang',['id'=>$pKM->vendor_id])}}" style="z-index: 1001;">{{$pKM->shop_name}}</a>
                                             </h5>
-                                            <div class="rating-box">
+                                            <!-- <div class="rating-box">
                                                 <ul class="rating">
                                                     <li><i class="fa fa-star"></i></li>
                                                     <li><i class="fa fa-star"></i></li>
@@ -53,7 +53,7 @@
                                                     <li class="no-star"><i class="fa fa-star"></i></li>
                                                     <li class="no-star"><i class="fa fa-star"></i></li>
                                                 </ul>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <h4><a class="product_name" href="{{route('client.detail', ['id' => $pKM->id])}}">{{$pKM->name}}</a>
                                         </h4>
@@ -68,7 +68,7 @@
                                             <li class="add-cart heart"><a class="links-details " href="{{route('wishlist', ['id' => $pKM->id])}}"><i
                                                         class="fa fa-heart"></i></a>
                                             </li>
-                                            <li class="add-cart "><a href="#" title="quick view" class="quick-view-btn"
+                                            <li class="add-cart "><a href="{{route('modalshow', ['id' => $pKM->id])}}" title="quick view" class="quick-view-btn"
                                                     data-toggle="modal" data-target="#exampleModalCenter"><i
                                                         class="fa fa-eye"></i></a></li>
 
@@ -99,7 +99,7 @@
             <div class="col-lg-12">
                 <div class="li-product-tab">
                     <ul class="nav li-product-menu text-center">
-                        <li><a class="active " data-toggle="tab" href="#"><span class="text-center">Sản phẩm mua nhiều nhất</span></a></li>
+                        <li><a class="active " data-toggle="tab" href="#"><span class="text-center">Sản phẩm bán chạy</span></a></li>
 
                         </li>
                     </ul>
@@ -127,7 +127,7 @@
                                             <h5 class="manufacturer">
                                                 <a href="{{route('cua-hang',['id'=>$pMost->vendor_id])}}" style="z-index: 1001;">{{$pMost->shop_name}}</a>
                                             </h5>
-                                            <div class="rating-box">
+                                            <!-- <div class="rating-box">
                                                 <ul class="rating">
                                                     <li><i class="fa fa-star"></i></li>
                                                     <li><i class="fa fa-star"></i></li>
@@ -135,7 +135,7 @@
                                                     <li class="no-star"><i class="fa fa-star"></i></li>
                                                     <li class="no-star"><i class="fa fa-star"></i></li>
                                                 </ul>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <h4><a class="product_name"
                                                 href="{{route('client.detail', ['id' => $pMost->id])}}">{{$pMost->name}}</a></h4>
@@ -145,7 +145,7 @@
                                     </div>
                                     <div class="add-actions action__overplay">
                                         <ul class="add-actions-link">
-                                            <li class="add-cart heart"><a class="links-details " href="wishlist.html"><i
+                                            <li class="add-cart heart"><a class="links-details " href="{{route('wishlist', ['id' => $pMost->id])}}"><i
                                                         class="fa fa-heart"></i></a>
                                             </li>
                                             <li class="add-cart "><a href="#" title="quick view" class="quick-view-btn"
@@ -237,7 +237,7 @@
                                             <h5 class="manufacturer">
                                                 <a href="{{route('cua-hang',['id'=>$pTop->vendor_id])}}" style="z-index: 1001;">{{$pTop->shop_name}}</a>
                                             </h5>
-                                            <div class="rating-box">
+                                            <!-- <div class="rating-box">
                                                 <ul class="rating">
                                                     <li><i class="fa fa-star"></i></li>
                                                     <li><i class="fa fa-star"></i></li>
@@ -245,7 +245,7 @@
                                                     <li class="no-star"><i class="fa fa-star"></i></li>
                                                     <li class="no-star"><i class="fa fa-star"></i></li>
                                                 </ul>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <h4><a class="product_name"
                                                 href="{{route('client.detail', ['id' => $pTop->id])}}">{{$pTop->name}}</a></h4>
@@ -311,7 +311,7 @@
 <!-- Begin Li's Phone Product Area -->
 
 
-<section class="product-area li-laptop-product mt-30  pb-45">
+<section class="product-area li-laptop-product mt-30  pb-45" id="dt">
     <div class="container">
         <div class="row">
             <!-- Begin Li's Section Area -->
@@ -346,7 +346,7 @@
                                             <h5 class="manufacturer">
                                                 <a href="{{route('cua-hang',['id'=>$phonePro->vendor_id])}}" style="z-index: 1001;">{{$phonePro->shop_name}}</a>
                                             </h5>
-                                            <div class="rating-box">
+                                            <!-- <div class="rating-box">
                                                 <ul class="rating">
                                                     <li><i class="fa fa-star"></i></li>
                                                     <li><i class="fa fa-star"></i></li>
@@ -354,7 +354,7 @@
                                                     <li class="no-star"><i class="fa fa-star"></i></li>
                                                     <li class="no-star"><i class="fa fa-star"></i></li>
                                                 </ul>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <h4><a class="product_name" href="{{route('client.detail', ['id' => $phonePro->id])}}">{{$phonePro->name}}</a>
                                         </h4>
@@ -364,7 +364,7 @@
                                     </div>
                                     <div class="add-actions action__overplay">
                                         <ul class="add-actions-link">
-                                            <li class="add-cart heart"><a class="links-details " href="wishlist.html"><i
+                                            <li class="add-cart heart"><a class="links-details " href="{{route('wishlist', ['id' => $phonePro->id])}}"><i
                                                         class="fa fa-heart"></i></a>
                                             </li>
                                             <li class="add-cart "><a href="#" title="quick view" class="quick-view-btn"
@@ -392,7 +392,7 @@
     </div>
 </section>
 <!--  -->
-<section class="product-area li-laptop-product  pb-45">
+<section class="product-area li-laptop-product  pb-45" id="lt">
     <div class="container">
         <div class="row">
 
@@ -428,7 +428,7 @@
                                             <h5 class="manufacturer">
                                                 <a href="{{route('cua-hang',['id'=>$laptopPro->vendor_id])}}" style="z-index: 1001;">{{$laptopPro->shop_name}}</a>
                                             </h5>
-                                            <div class="rating-box">
+                                            <!-- <div class="rating-box">
                                                 <ul class="rating">
                                                     <li><i class="fa fa-star"></i></li>
                                                     <li><i class="fa fa-star"></i></li>
@@ -436,7 +436,7 @@
                                                     <li class="no-star"><i class="fa fa-star"></i></li>
                                                     <li class="no-star"><i class="fa fa-star"></i></li>
                                                 </ul>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <h4><a class="product_name"
                                                 href="{{route('client.detail', ['id' => $laptopPro->id])}}">{{$laptopPro->name}}</a>
@@ -447,7 +447,7 @@
                                     </div>
                                     <div class="add-actions action__overplay">
                                         <ul class="add-actions-link">
-                                            <li class="add-cart heart"><a class="links-details " href="wishlist.html"><i
+                                            <li class="add-cart heart"><a class="links-details " href="{{route('wishlist', ['id' => $laptopPro->id])}}"><i
                                                         class="fa fa-heart"></i></a>
                                             </li>
                                             <li class="add-cart "><a href="#" title="quick view" class="quick-view-btn"
@@ -475,7 +475,7 @@
     </div>
 </section>
 <!--  -->
-<section class="product-area li-laptop-product  pb-45">
+<section class="product-area li-laptop-product  pb-45" id="dh">
     <div class="container">
         <div class="row">
 
@@ -508,9 +508,9 @@
                                     <div class="product_desc_info">
                                         <div class="product-review">
                                             <h5 class="manufacturer">
-                                                <a href="{{route('cua-hang',['id'=>$laptopPro->vendor_id])}}" style="z-index: 1001;">{{$oclockPro->shop_name}}</a>
+                                                <a href="{{route('cua-hang',['id'=>$oclockPro->vendor_id])}}" style="z-index: 1001;">{{$oclockPro->shop_name}}</a>
                                             </h5>
-                                            <div class="rating-box">
+                                            <!-- <div class="rating-box">
                                                 <ul class="rating">
                                                     <li><i class="fa fa-star"></i></li>
                                                     <li><i class="fa fa-star"></i></li>
@@ -518,7 +518,7 @@
                                                     <li class="no-star"><i class="fa fa-star"></i></li>
                                                     <li class="no-star"><i class="fa fa-star"></i></li>
                                                 </ul>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <h4><a class="product_name"
                                                 href="{{route('client.detail', ['id' => $oclockPro->id])}}">{{$oclockPro->name}}</a>
@@ -529,7 +529,7 @@
                                     </div>
                                     <div class="add-actions action__overplay">
                                         <ul class="add-actions-link">
-                                            <li class="add-cart heart"><a class="links-details " href="wishlist.html"><i
+                                            <li class="add-cart heart"><a class="links-details " href="{{route('wishlist', ['id' => $oclockPro->id])}}"><i
                                                         class="fa fa-heart"></i></a>
                                             </li>
                                             <li class="add-cart "><a href="#" title="quick view" class="quick-view-btn"
@@ -557,15 +557,15 @@
     </div>
 </section>
 <!--  -->
-<section class="product-area li-laptop-product  pb-45">
+<section class="product-area li-laptop-product  pb-45" id="pk">
     <div class="container">
         <div class="row">
 
             <!-- Begin Li's Section Area -->
             <div class="col-lg-12">
                 <div class="li-section-title">
-                    <h2>
-                        <span>Phụ kiện</span>
+                    <h2 >
+                        <span >Phụ kiện</span>
                     </h2>
                     <ul class="li-sub-category-list">
                         <li class="active"><a href="shop-left-sidebar.html">Chuột</a></li>
@@ -593,7 +593,7 @@
                                             <h5 class="manufacturer">
                                                 <a href="{{route('cua-hang',['id'=>$accesPro->vendor_id])}}" style="z-index: 1001;">{{$accesPro->shop_name}}</a>
                                             </h5>
-                                            <div class="rating-box">
+                                            <!-- <div class="rating-box">
                                                 <ul class="rating">
                                                     <li><i class="fa fa-star"></i></li>
                                                     <li><i class="fa fa-star"></i></li>
@@ -601,7 +601,7 @@
                                                     <li class="no-star"><i class="fa fa-star"></i></li>
                                                     <li class="no-star"><i class="fa fa-star"></i></li>
                                                 </ul>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <h4><a class="product_name"
                                                 href="{{route('client.detail', ['id' => $accesPro->id])}}">{{$accesPro->name}}</a>
@@ -612,7 +612,7 @@
                                     </div>
                                     <div class="add-actions action__overplay">
                                         <ul class="add-actions-link">
-                                            <li class="add-cart heart"><a class="links-details " href="wishlist.html"><i
+                                            <li class="add-cart heart"><a class="links-details " href="{{route('wishlist', ['id' => $accesPro->id])}}"><i
                                                         class="fa fa-heart"></i></a>
                                             </li>
                                             <li class="add-cart "><a href="#" title="quick view" class="quick-view-btn"
