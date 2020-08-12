@@ -134,7 +134,7 @@ Danh sách sản phẩm
                                                     <td>{{$prod->name}}</td>
                                                     <td>{{$prod->unit}}</td>
                                                     <td>{{$prod->SKU}}</td>
-                                                    <td>{{$prod->brand_name}}</td>
+                                                    <td></td>
                                                     <td>
                                                     
                                                         <img src="upload/product/{{$prod->url}}" alt=""

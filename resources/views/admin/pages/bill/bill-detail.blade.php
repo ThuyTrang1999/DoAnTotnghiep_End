@@ -70,13 +70,13 @@ Hóa Đơn Chi TiếtTiết
                                                 
                                                 <tr role="row" class="odd">
                                                    @foreach($bill_detail as $billsp)
-                                                    <td>{{$bill_detail -> id}}</td>
+                                                    <td>{{$billsp -> id}}</td>
                                                     
                                                     <td>{{$billsp ->name }}</td>
                                                     <td>{{$billsp ->price }}</td>
                                                     
-                                                    <td>{{$bill_detail -> quanlity}}</td>
-                                                    <td>tổng tiền}</td>
+                                                    <td>{{$billsp -> quanlity}}</td>
+                                                    <td>tổng tiền</td>
                                                     
                                                     @endforeach
                                                 </tr>

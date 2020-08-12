@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\category;
 use Illuminate\Support\Str;
 use App\vendor;
+use Illuminate\Support\Facades\Input;
 use App\img;
 use App\user;
 use App\brand;
@@ -15,7 +16,7 @@ use App\post;
 use App\ProductComment;
 use App\Http\Requests\ProductCommentRequest;
 use Symfony\Component\HttpFoundation\Response;
-
+use Spatie\QueryBuilder\QueryBuilderFacade as QueryBuilder;
 class ProduceController extends Controller
 {
      /**
@@ -30,8 +31,9 @@ class ProduceController extends Controller
             ->join('categories', 'produces.category_id', '=', 'categories.id')
             ->join('imgs', 'produces.id', '=', 'imgs.produce_id')
             ->join('vendors', 'produces.author_id', '=', 'vendors.id')
-            ->join('brand', 'produces.brand', '=', 'brand.id')
+            // ->join('brand', 'produces.brand', '=', 'brand.id')
             ->where('imgs.style','=',1);
+            // dd($result);
         if($request->search){
             $result->where('produces.name', 'like', '%' .$request->search. '%')->get();
         }
@@ -50,68 +52,21 @@ class ProduceController extends Controller
         $listCate = DB::table('categories')->get();
         $listShop=DB::table('vendors')->get();
 
+
+        // $products = QueryBuilder::for(Product::class)
+        // ->allowedFilters([
+        //     AllowedFilter::exact('cateName', 'brand_id'),
+        //     AllowedFilter::exact('shopName', 'category_id'),
+        //     ])
+        // ->get();
        if($request->key_word){
             $result=DB::table('produces')
             ->join('imgs', 'produces.id', '=', 'imgs.produce_id')
             ->join('vendors', 'vendors.id', '=', 'produces.vendor_id')
             ->where('produces.name', 'like', '%' .$request->key_word. '%');
        }
-       else if($request->category_id)
-        {
-            $category_id = $request->category_id;
-            $Produce=DB::table('produces')
-            ->join('imgs', 'produces.id', '=', 'imgs.produce_id')
-            ->join('vendors', 'vendors.id', '=', 'produces.vendor_id');
-                switch ($category_id ){
-                    case '1':
-                        $result=$Produce->where('category_id', '=', 1); break;
-                    case '2':
-                        $result=$Produce->where('category_id', '=', 2); break;
-                    case '3':
-                        $result=$Produce->where('category_id', '=', 3); break;
-
-                    case '4':
-                        $result=$Produce->where('category_id', '=', 4); break;
-                }
-            }
-        else if($request->vendor_id){
-            $vendor_id = $request->vendor_id;
-            $Produce=DB::table('produces')
-            ->join('imgs', 'produces.id', '=', 'imgs.produce_id')
-            ->join('vendors', 'vendors.id', '=', 'produces.vendor_id');
-                switch ($vendor_id ){
-                    case '1':
-                        $result=$Produce->where('vendor_id', '=', 1); break;
-                    case '2':
-                        $result=$Produce->where('vendor_id', '=', 2); break;
-                    case '3':
-                        $result=$Produce->where('vendor_id', '=', 3); break;
-
-                    case '4':
-                        $result=$Produce->where('vendor_id', '=', 4); break;
-                }
-            
-        }
-        else if($request->discout_price)
-            {
-                $discout_price = $request->discout_price;
-                $Produce=DB::table('produces')
-                ->join('imgs', 'produces.id', '=', 'imgs.produce_id')
-                ->join('vendors', 'vendors.id', '=', 'produces.vendor_id');
-                switch ($discout_price ){
-                    case '1':
-                        $result=$Produce->where('discout_price', '<', 2000000); break;
-                    case '2':
-                        $result=$Produce->whereBetween('discout_price', [2000000, 4000000]); break;
-                    case '3':
-                        $result=$Produce->whereBetween('discout_price', [4000000, 7000000]); break;
-        
-                    case '4':
-                        $result=$Produce->whereBetween('discout_price', [7000000, 20000000]); break;
-                    case '5':
-                        $result=$Produce->where('discout_price', '>=', 20000000 ); break;
-                }
-         }
+    
+   
     
         else if($request->orderby)
         {
@@ -137,6 +92,11 @@ class ProduceController extends Controller
                 ->join('imgs', 'produces.id', '=', 'imgs.produce_id')
                 ->join('vendors', 'vendors.id', '=', 'produces.vendor_id');
             }
+
+
+            
+
+
             $listProduces=$result->paginate(12);
             
             return view('client.pages.list-product', compact('listProduces','listCate', 'listShop'));
@@ -292,7 +252,7 @@ return alert('THêm Không thành công ');
 				'imgFile.mimes' => 'Chỉ chấp nhận hình thẻ với đuôi .jpg .jpeg .png .gif',
 				'imgFile.max' => 'Hình thẻ giới hạn dung lượng không quá 2M',
 			]
-        );
+            );
         $get_product = $request->file('imgFile');
         $get_product2 = $request->file('imgFile2');
         if ($get_product->isValid()) {
@@ -426,5 +386,25 @@ $imageName2 = time().$Hinh.'.'.$hinhchitiet->getClientOriginalExtension();
         $listProduces=$listNewProduct->OrderByDescending('produces.id')->paginate(5);
         return view('client.pages.list-product', compact('Category','showShop','listProduces'));
     }
+
+    public function filterProduct(Request $request){
+        $data=$request->all();
+        $productUrl="";
+        if(!empty($data['productFilter'])){
+            foreach($data['productFilter'] as $product){
+                if(empty($productUrl)){
+                    $productUrl="&category".$product;
+                }
+                else{
+                    $productUrl .="-".$product;
+
+                }
+            }
+        }
+
+      
+    }
+
+
 
 }

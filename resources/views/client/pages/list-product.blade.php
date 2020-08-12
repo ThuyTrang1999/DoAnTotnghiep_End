@@ -28,28 +28,39 @@ Trang danh sách
                     <!-- filter-sub-area start -->
                     <div class="filter-sub-area">
                         <h5 class="filter-sub-titel">Loại sản phẩm: </h5>
+                        <form method="post" action="{{route('product_filter')}}">{{ csrf_field() }}
 
-                        <div class="categori-checkbox text-white">
-                            <div class="custom-control custom-checkbox p-0">
-                                <div class="categori-checkbox">
+                            <div class="categori-checkbox text-white">
+                                <div class="custom-control custom-checkbox p-0">
+                                    <div class="categori-checkbox">
 
-                                    <ul>
+                                        <ul>
 
-                                        @foreach($listCate as $lcate)
+                                            @foreach($listCate as $lcate)
 
-                                        <li><a href="?category_id={{$lcate->id}}">{{$lcate->cate_name}}</a></>
+                                            <!-- <li><a href="?category_id={{$lcate->id}}">{{$lcate->cate_name}}</a></> -->
+                                            <li>
+                                                <a href="#"> <input type="checkbox" name="cateName"
+                                                        id="{{$lcate->cate_name}}" value="{{$lcate->id}}" @if (in_array($lcate->id, explode(',', request()->input('filter.cateName'))))
+                                                        @endif
+                                                    >
+                                                    <span>{{$lcate->cate_name}}</span>
+                                                </a>
+                                            </li>
+
                                             @endforeach
-                                    </ul>
+                                        </ul>
+                                    </div>
+
                                 </div>
 
+
+
+
+
+
                             </div>
-
-
-
-
-
-
-                        </div>
+                        </form>
                     </div>
                     <!-- filter-sub-area end -->
                     <!-- filter-sub-area start -->
@@ -58,11 +69,19 @@ Trang danh sách
                         <div class="categori-checkbox">
 
                             <ul>
-                                <li><a href="?discout_price=1">Dưới 2 triệu</a></li>
+                                <li><input type="checkbox" name="product-categori"><a href="#">Dưới 2 triệu</a></li>
+                                <li><input type="checkbox" name="product-categori"><a href="#">Từ 2 triệu đến 4
+                                        triệu</a></li>
+                                <li><input type="checkbox" name="product-categori"><a href="#">Từ 4 triệu đến 7
+                                        triệu</a></li>
+                                <li><input type="checkbox" name="product-categori"><a href="#">Từ 7 triệu đến 20
+                                        triệu</a></li>
+                                <li><input type="checkbox" name="product-categori"><a href="#">20 triệu trở lên</a></li>
+                                <!-- <li><a href="?discout_price=1">Dưới 2 triệu</a></li>
                                 <li><a href="?discout_price=2">Từ 2 triệu đến 4 triệu</a></li>
                                 <li><a href="?discout_price=3">Từ 4 triệu đến 7 triệu</a></li>
                                 <li><a href="?discout_price=4">Từ 7 triệu đến 20 triệu</a></li>
-                                <li><a href="?discout_price=5">20 triệu trở lên</a></li>
+                                <li><a href="?discout_price=5">20 triệu trở lên</a></li> -->
                             </ul>
 
                         </div>
@@ -76,14 +95,21 @@ Trang danh sách
                                 <ul>
                                     @foreach ($listShop as $lshop)
                                     <li>
-                                   
-                                       <a href="?vendor_id={{ $lshop->id}}">{{$lshop->shop_name}}</a>
+
+                                        <!-- <a href="?vendor_id={{ $lshop->id}}">{{$lshop->shop_name}}</a> -->
+                                        <a href="#"> <input type="checkbox" name="shopName"
+                                                        id="{{$lshop->shop_name}}" value="{{$lshop->id}}" @if (in_array($lshop->id, explode(',', request()->input('filter.shopName'))))
+                                                        @endif
+                                                    >
+                                                    <span>{{$lshop->shop_name}}</span>
+                                                </a>
                                     </li>
                                     @endforeach
                                 </ul>
                             </form>
                         </div>
                     </div>
+                    <button type="button" id="filter">Filter</button>
                     <!-- filter-sub-area end -->
 
                 </div>

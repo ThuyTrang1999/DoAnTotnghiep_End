@@ -55,4 +55,33 @@
     <!-- Custom Theme Scripts -->
     <script src="../assets/admin/build/js/custom.min.js"></script>
  
+<script>
+window.onload = function() {
+    var buttonFile = document.getElementById("buttonFile");
+    var file = document.getElementById("file");
 
+    buttonFile.onclick = function() {
+        document.getElementById("file").click();
+    };
+};
+
+function showMyImage(fileInput) {
+        var files = fileInput.files;
+        for (var i = 0; i < files.length; i++) {           
+            var file = files[i];
+            var imageType = /image.*/;     
+            if (!file.type.match(imageType)) {
+                continue;
+            }           
+            var img=document.getElementById("buttonFile");            
+            img.file = file;    
+            var reader = new FileReader();
+            reader.onload = (function(aImg) { 
+                return function(e) { 
+                    aImg.src = e.target.result; 
+                }; 
+            })(img);
+            reader.readAsDataURL(file);
+        }    
+    }
+    </script>

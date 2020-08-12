@@ -194,7 +194,8 @@ Route::post('profileClient/{id}', 'CustomerController@profileEditClient')->name(
 // kenh nguoi ban
 Route::get('/kenh-cua-ban', 'ShopPagesController@index')->name('client.seller');
 Route::get('/kiem-tra-tai-khoan', 'PagesController@checkAccount')->name('check-account');
-Route::get('/mo-cau-hang', 'PagesController@openStore')->name('open-store');
+Route::get('/mo-cua-hang', 'PagesController@openStore')->name('open-store');
+Route::get('/xu-ly', 'PagesController@createStore')->name('create-store');
 Route::get('/cua-hang/id','ShopPagesController@show')->name('cua-hang');
 
 // group shop
@@ -264,3 +265,5 @@ Route::post('/dat-hang',['as'=>'dathang','uses'=>'PagesController@postCheckout']
     
 // San Pham yeu thich
 Route::get('/san-phan-yeu-thich/{id}','WishlistController@addWishlist' )->name('wishlist');
+
+Route::match(['get','post'],'/filter/product','ProduceController@filterProduct' )->name('product_filter');

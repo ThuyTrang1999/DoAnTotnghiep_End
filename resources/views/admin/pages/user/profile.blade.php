@@ -21,17 +21,21 @@ Hồ sơ cá nhân
                     @csrf
                     <div class="row">
                         <div class="col-sm-4">
-                            <div class="avatar_img">
-                                <img src="../../upload/avatar/{{Auth::user()->avatar}}" alt="..."
-                                    class="img-circle profile_img">
-                            </div>
-                            <input type="file" name="Hinh" id="HinhProfile" class="form-control row  col-sm-10"
-                                @if(isset($addUser)) value="{{ $addUser->Hinh }}" @endif />
-                            <div class="profile_Username text-center">
-                                <h2 class="text-center">{{Auth::user()->first_name}} {{Auth::user()->last_name}}
-                                </h2>
+                            <div class="hoverImg">
+                                
+                                <img id="buttonFile" @if(isset($addUser))
+                                    src="../../upload/avatar/{{Auth::user()->avatar}}" @endif alt="avt"
+                                    style="height: 200px; width: 200px; border-radius: 50%;cursor: pointer;">
+
+                               <i class="fa fa-camera" aria-hidden="true"></i>
+
+                                <input type="file" name="Hinh" id="file" @if(isset($addUser))
+                                    value="{{ $addUser->avatar }}" @endif accept=".jpg, .png, .jpeg" accept="image/*"
+                                    onchange="showMyImage(this)" style="display: none;">
 
                             </div>
+
+
                         </div>
                         <div class="col-sm-8">
                             <div class="row">

@@ -97,5 +97,67 @@ $(function() {
     })
 })
     </script>
+    <script>
+window.onload = function() {
+    var buttonFile = document.getElementById("buttonFile");
+    var file = document.getElementById("file");
+
+    buttonFile.onclick = function() {
+        document.getElementById("file").click();
+    };
+};
+
+function showMyImage(fileInput) {
+        var files = fileInput.files;
+        for (var i = 0; i < files.length; i++) {           
+            var file = files[i];
+            var imageType = /image.*/;     
+            if (!file.type.match(imageType)) {
+                continue;
+            }           
+            var img=document.getElementById("buttonFile");            
+            img.file = file;    
+            var reader = new FileReader();
+            reader.onload = (function(aImg) { 
+                return function(e) { 
+                    aImg.src = e.target.result; 
+                }; 
+            })(img);
+            reader.readAsDataURL(file);
+        }    
+    }
+    </script>
+
+
+
+<script>
+    function getIds(checkboxName) {
+        let checkBoxes = document.getElementsByName(checkboxName);
+        let ids = Array.prototype.slice.call(checkBoxes)
+                        .filter(ch => ch.checked==true)
+                        .map(ch => ch.value);
+        return ids;
+    }
+
+    function filterResults () {
+        let catagoryIds = getIds("cateName");
+
+        let VendorIds = getIds("shopName");
+
+        let href = 'products?';
+
+        if(catagoryIds.length) {
+            href += 'filter[cateName]=' + brandIds;
+        }
+
+        if(VendorIds.length) {
+            href += '&filter[shopName]=' + VendorIds;
+        }
+
+        document.location.href=href;
+    }
+
+    document.getElementById("filter").addEventListener("click", filterResults);
+</script>
 
     <!-- thanh toán thành công -->

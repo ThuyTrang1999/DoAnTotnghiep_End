@@ -14,20 +14,20 @@ thêm mới người dùng
             </div>
             @csrf
             @if (count($errors) > 0)
-                @foreach ($errors->all() as $error)
-                    <div class = 'alert alert-danger'>
-                        <li>{{ $error }}</li>   
-                    </div>
-                @endforeach
+            @foreach ($errors->all() as $error)
+            <div class='alert alert-danger'>
+                <li>{{ $error }}</li>
+            </div>
+            @endforeach
             @endif
             @if(session('thongbao'))
-                <div class = 'alert alert-danger'>
-                    {{section('thongbao')}}
-                </div>
+            <div class='alert alert-danger'>
+                {{section('thongbao')}}
+            </div>
             @endif
             <div class="x_content">
                 <form class="form-horizontal form-label-left" method="POST" enctype="multipart/form-data">
-                   
+
                     <div class="row">
                         <div class="form-group row col-md-6 col-sm-6">
                             <label class="control-label col-md-2 col-sm-2 ">Tài khoản</label>
@@ -38,11 +38,12 @@ thêm mới người dùng
                         </div>
                         <div class="form-group row col-md-6 col-sm-6 ">
                             <label class="control-label col-md-2 col-sm-2 ">Hình ảnh</label>
-                            <input type="file" name="Hinh" id="Hinh"  @if(isset($addUser)) value="{{ $addUser->Hinh }}" @endif/>
+                            <input type="file" name="Hinh" id="Hinh" @if(isset($addUser)) value="{{ $addUser->Hinh }}"
+                                @endif />
                         </div>
                     </div>
                     <div class="row">
-                    <div class="form-group row col-md-6 col-sm-6">
+                        <div class="form-group row col-md-6 col-sm-6">
                             <label class="control-label col-md-2 col-sm-2 ">Mật khẩu</label>
                             <div class="col-md-10 col-sm-10 ">
                                 <input type="password" name="password" class="form-control" placeholder="Nhập mật khẩu"
@@ -52,8 +53,9 @@ thêm mới người dùng
                         <div class="form-group row col-md-6 col-sm-6 ">
                             <label class="control-label col-md-2 col-sm-2 ">Nhập Lại mật khẩu</label>
                             <div class="col-md-10 col-sm-10 ">
-                                <input type="password" name="repassword" class="form-control" placeholder="Nhập lại mật khẩu"
-                                @if(isset($addUser)) value="{{ $addUser->repassword }}" @endif>
+                                <input type="password" name="repassword" class="form-control"
+                                    placeholder="Nhập lại mật khẩu" @if(isset($addUser))
+                                    value="{{ $addUser->repassword }}" @endif>
                             </div>
                         </div>
                     </div>
@@ -78,11 +80,11 @@ thêm mới người dùng
                         <div class="form-group row col-md-6 col-sm-6 ">
                             <label class="control-label col-md-2 col-sm-2 ">Ngày sinh</label>
                             <div class="col-md-10 col-sm-10 ">
-                                <input type="text" name="birthday" placeholder="Nhập ngày sinh" class="form-control" @if(isset($addUser))
-                                    value="{{ $addUser->birthday }}" @endif>
+                                <input type="text" name="birthday" placeholder="Nhập ngày sinh" class="form-control"
+                                    @if(isset($addUser)) value="{{ $addUser->birthday }}" @endif>
                             </div>
                         </div>
-                        
+
                     </div>
 
                     <div class="row">

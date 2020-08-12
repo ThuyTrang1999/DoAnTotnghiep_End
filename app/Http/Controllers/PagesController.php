@@ -166,22 +166,61 @@ class PagesController extends Controller
         $password =Auth::guard('customer')->user()->password;
         $role =Auth::guard('customer')->user()->role;
         // dd($role);
-    
-        if (Auth::guard('customer')->attempt(['email'=>$email , 'password'=>'123456']) && $role = '1') {
-            $infoShop=DB::table('customers')
-            ->join('vendors', 'customers.id', '=', 'vendors.cus_id')
-            ->where('email','=',$email)->first();
-            return view('shop.pages.index', compact('infoShop'));
-        } else {
-            return view('client.pages.openStore');
-           
-        }
+     
+      
+            if ($role == 1) {
+                $infoShop=DB::table('customers')
+                ->join('vendors', 'customers.id', '=', 'vendors.cus_id')
+                ->where('email','=',$email)->first();
+                return view('shop.pages.index', compact('infoShop'));
+            } else {
+                return view('client.pages.openStore');
+               
+            }
+        
+
+        
       
      
 
    
     
 }
+
+    public function openStore(Request $request){
+    
+   
+        return view('client.pages.openStore');
+       
+    }
+    public function createStore(Request $request){
+    
+        $vendor = new vendor;
+        $vendor->shop_name = $request->shop_name;
+        $vendor->cus_id = Auth::guard('customer')->user()->id;
+        $get_images_banner=$request->file('bannerFile');
+        $vendor->desc_vendor =  $request->desc;
+        $get_images_logo=$request->file('logoFile');
+        $vendor->status =$request->status;
+        // images banner
+        if($get_images_banner && $get_images_logo){
+            $new_images_banner=time() . "_" . rand(0,9999999) . "_" . md5(rand(0,9999999)) . "." .$request->bannerFile->getClientOriginalName();
+            $new_images_logo=time() . "_" . rand(0,9999999) . "_" . md5(rand(0,9999999)) . "." .$request->logoFile->getClientOriginalName();
+            $get_images_banner->move('upload/banner', $new_images_banner);
+            $get_images_logo->move('upload/logo', $new_images_logo);
+            $vendor->banner = $new_images_banner;
+            $vendor->logo = $new_images_logo;
+            $vendor->save();
+        }
+        $vendor->save();
+        return redirect()->route('client.index');
+       
+    }
+  
+ 
+
+
+
 
 
 }

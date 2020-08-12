@@ -14,8 +14,8 @@ Thông tin cá nhân
                 <div class="x_content">
                     <div class="container">
                         <form class="form-horizontal form-label-left"
-                            action="{{route('xu-ly-cap-nhat',['id'=>Auth::guard('customer')->user()->id])}}" method="POST"
-                            enctype="multipart/form-data">
+                            action="{{route('xu-ly-cap-nhat',['id'=>Auth::guard('customer')->user()->id])}}"
+                            method="POST" enctype="multipart/form-data">
                             @csrf
                             @if (count($errors) > 0)
                             <ul>
@@ -32,16 +32,23 @@ Thông tin cá nhân
                             </div>
                             @endif
                             <div class="row">
-                            <div class="col-sm-4">
+                                <div class="col-sm-4">
                                     <div class="form-group row col-md-12 col-sm-12">
-                                     
+
                                         <div class="col-md-10 col-sm-10 ">
-                                            <img @if(isset($Addcustomers))
-                                                src="../../upload/cus_avt/{{Auth::guard('customer')->user()->avatar}}" @endif alt="avt"
-                                                style="height: 100px; width: 100px;">
-                                            <input type="file" name="Hinh" id="Hinh" @if(isset($addUAddcustomersser))
-                                                value="{{ $Addcustomerss->avatar }}" @endif>
+                                        <div class="hoverImg">
+                                            <img id="buttonFile" @if(isset($Addcustomers))
+                                                src="../../upload/cus_avt/{{Auth::guard('customer')->user()->avatar}}"
+                                                @endif alt="avt"
+                                                style="height: 200px; width: 200px; border-radius: 50%;cursor: pointer;">
+                                                <i class="fa fa-camera" aria-hidden="true"></i>
+                                            <input type="file" name="Hinh" id="file" @if(isset($addUAddcustomersser))
+                                                value="{{ $Addcustomerss->avatar }}" @endif accept=".jpg, .png, .jpeg"
+                                                accept="image/*" onchange="showMyImage(this)" style="display: none;">
                                         </div>
+
+                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="col-sm-8">
@@ -80,7 +87,7 @@ Thông tin cá nhân
                                             </div>
                                         </div>
                                     </div>
-                                  
+
                                     <div class="row">
                                         <div class="form-group row col-md-12 col-sm-12 ">
                                             <label class="control-label col-md-2 col-sm-2 ">Điện thoại</label>
@@ -102,7 +109,7 @@ Thông tin cá nhân
                                         </div>
                                     </div>
                                 </div>
-                               
+
                             </div>
                             <div class="ln_solid"></div>
                             <div class="form-group">

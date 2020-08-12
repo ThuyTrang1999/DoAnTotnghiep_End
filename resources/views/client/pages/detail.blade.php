@@ -448,7 +448,7 @@ $(document).ready(function() {
             .fail(function(err) {
                 console.log(err);
 
-                alert(err.responseJSON.message);
+                // alert(err.responseJSON.message);
             })
             .always(function() {
                 // Xử lý khi ajax chạy xong

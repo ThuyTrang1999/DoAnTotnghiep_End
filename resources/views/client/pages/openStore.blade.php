@@ -16,13 +16,13 @@
             
             <div class="x_content">
             <div class="container">
-                <form class="form-horizontal form-label-left" action="" method="">
+                <form class="form-horizontal form-label-left" action="{{ route('create-store')}}" method="GET">
                 @csrf
                     <div class="row">
                     <div class="form-group row col-md-6 col-sm-6">
                             <label class="control-label col-md-4 col-sm-4">Tài khoản</label>
                             <div class="col-md-8 col-sm-8 ">
-                                <label for=""></label>
+                                <label for="">{{Auth::guard('customer')->user()->email}}</label>
                             </div>
                         </div>
                         <div class="form-group row col-md-6 col-sm-6">
