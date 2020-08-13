@@ -84,4 +84,5 @@ function showMyImage(fileInput) {
             reader.readAsDataURL(file);
         }    
     }
+   
     </script>

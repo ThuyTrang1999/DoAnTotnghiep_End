@@ -21,10 +21,21 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(request $request)
     {
-        $listCustomer = customer::paginate(3);
-        return view('admin.pages.customer.list-customer',['listCustomer'=>$listCustomer]);
+        $listCustomer2 = customer::paginate(3);
+        $result=DB::table('customers');
+        if($request->search){
+            $result->where('customers.name', 'like', '%' .$request->search. '%')->get();
+        }
+        if($request->role){
+            $result->where('customers.role',$request->role)->get();
+        }
+        if($request->status){
+            $result->where('customers.status',$request->status)->get();
+        }
+        $listCustomer = $result->paginate(3);
+        return view('admin.pages.customer.list-customer',['listCustomer'=>$listCustomer],['listCustomer2'=>$listCustomer2]);
     }
     public function create()
     {
@@ -79,7 +90,7 @@ class CustomerController extends Controller
             @unlink("upload/cus_avt/".$Addcustomers->avatar);
             $Addcustomers->avatar = $Hinh;
         }
-$Addcustomers->save();
+        $Addcustomers->save();
          return redirect()->route('client.index')->with(['thongbao' => 'Cập nhật thành công ']);
     }
   
@@ -233,6 +244,19 @@ $Addcustomers->save();
         ]);
     }
 
+    public function edit($id)
+    {
+         $cus = customer::find($id);
+         return view('admin.pages.customer.edit-customer', compact('cus'));
+    }
+
+    public function update(Request $request,$id)
+    {
+        $cus = customer::find($id);
+        $cus->role = $request->role; 
+        $cus->save();
+        return redirect()->route('customer.listCustomer',compact('cus')); 
+    }
     public function postResetPass(Request $request)
     {
         $this->validate($request, [ 

@@ -22,9 +22,6 @@ class UserController extends Controller
         if($request->search){
             $result->where('users.user_name', 'like', '%' .$request->search. '%')->get();
         }
-        if($request->role){
-            $result->where('users.role',$request->role)->get();
-        }
         if($request->status){
             $result->where('users.status',$request->status)->get();
         }

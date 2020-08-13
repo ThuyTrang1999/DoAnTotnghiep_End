@@ -125,7 +125,7 @@ Danh sách sản phẩm
                                                     </th>
                                                     <th tabindex="0" aria-controls="datatable-responsive" rowspan="1"
                                                         colspan="1" style="width: 81px;" aria-sort="ascending">
-                                                        hành động</th>
+                                                        </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -154,13 +154,10 @@ Danh sách sản phẩm
                                                     @else
                                                     <td class="text-danger">Không hoạt động</td>
                                                     @endif
-
                                                     <td class="text-center">
-                                                    <a href="{{route('product.cap-nhat',['id'=>$prod->id])}}" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                       
+                                                        <a href="{{route('product.cap-nhat',['id'=>$prod->id])}}" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                        <a href="{{route('product.xoa',['id'=>$prod->id])}}" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa???')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
-
                                                 </tr>
                                                 @endforeach
                                             </tbody>
@@ -168,39 +165,11 @@ Danh sách sản phẩm
                                         {!! $listProduce->links() !!}
                                     </div>
                                 </div>
-
                             </div>
-
-
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-  
-    <div class="col-sm-12">
-        <div class="dataTables_paginate paging_simple_numbers" id="datatable-responsive_paginate">
-            <ul class="pagination">
-                <li class="paginate_button previous disabled" id="datatable-responsive_previous"><a href="#"
-                        aria-controls="datatable-responsive" data-dt-idx="0" tabindex="0">Previous</a></li>
-                <li class="paginate_button active"><a href="#" aria-controls="datatable-responsive" data-dt-idx="1"
-                        tabindex="0">1</a></li>
-                <li class="paginate_button "><a href="#" aria-controls="datatable-responsive" data-dt-idx="2"
-                        tabindex="0">2</a></li>
-                <li class="paginate_button "><a href="#" aria-controls="datatable-responsive" data-dt-idx="3"
-                        tabindex="0">3</a></li>
-                <li class="paginate_button "><a href="#" aria-controls="datatable-responsive" data-dt-idx="4"
-                        tabindex="0">4</a></li>
-                <li class="paginate_button "><a href="#" aria-controls="datatable-responsive" data-dt-idx="5"
-                        tabindex="0">5</a></li>
-                <li class="paginate_button "><a href="#" aria-controls="datatable-responsive" data-dt-idx="6"
-                        tabindex="0">6</a></li>
-                <li class="paginate_button next" id="datatable-responsive_next"><a href="#"
-                        aria-controls="datatable-responsive" data-dt-idx="7" tabindex="0">Next</a></li>
-            </ul>
         </div>
     </div>
 </div>

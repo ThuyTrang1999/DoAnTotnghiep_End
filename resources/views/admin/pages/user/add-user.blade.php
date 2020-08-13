@@ -38,8 +38,14 @@ thêm mới người dùng
                         </div>
                         <div class="form-group row col-md-6 col-sm-6 ">
                             <label class="control-label col-md-2 col-sm-2 ">Hình ảnh</label>
-                            <input type="file" name="Hinh" id="Hinh" @if(isset($addUser)) value="{{ $addUser->Hinh }}"
-                                @endif />
+                                <div class="hoverImg">
+                                <img id="buttonFile" 
+                                    src="../../upload/avatar/icon_md.png"  alt="avt"
+                                    style="height: 60px; width: 60px; cursor: pointer;">
+                                <input type="file" name="Hinh" id="file" @if(isset($addUser))
+                                    value="{{ $addUser->avatar }}" @endif accept=".jpg, .png, .jpeg" accept="image/*"
+                                    onchange="showMyImage(this)" style="display: none;">
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -75,7 +81,6 @@ thêm mới người dùng
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="form-group row col-md-6 col-sm-6 ">
                             <label class="control-label col-md-2 col-sm-2 ">Ngày sinh</label>
@@ -84,9 +89,7 @@ thêm mới người dùng
                                     @if(isset($addUser)) value="{{ $addUser->birthday }}" @endif>
                             </div>
                         </div>
-
                     </div>
-
                     <div class="row">
                         <div class="form-group row col-md-6 col-sm-6 ">
                             <label class="control-label col-md-2 col-sm-2 ">Email</label>
@@ -112,7 +115,6 @@ thêm mới người dùng
                                     @if(isset($addUser)) value="{{ $addUser->address }}" @endif>
                             </div>
                         </div>
-
                         <div class="form-group row col-md-6 col-sm-6">
                             <label class="control-label col-md-2 col-sm-2 ">Giới tính</label>
                             <div class="col-md-10 col-sm-10 ">
@@ -131,7 +133,6 @@ thêm mới người dùng
                                 <select class="select2_single form-control" name="role" tabindex="-1"
                                     @if(isset($addUser)) value="{{ $addUser->role }}" @endif>
                                     <option value="1">Quản trị viên</option>
-                                    <option value="2">Chủ shop</option>
                                 </select>
                             </div>
                         </div>

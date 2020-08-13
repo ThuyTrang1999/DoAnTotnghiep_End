@@ -10,11 +10,11 @@ Thêm sản catagory
     <div class="col-md-12" style="margin: 0 auto;">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Thêm thương hiệu</small></h2>
+                <h2>Cập nhật thương hiệu</small></h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <form class="form-horizontal form-label-left" action="{{route('brand.xu-ly-them-moi')}}" method="POST" >
+                <form class="form-horizontal form-label-left" action="{{route('brand.xu-ly-cap-nhat',['id'=>$brand->id])}}" method="POST" >
                 @csrf
                     <div class="row">
                         <div class="form-group row col-md-6 col-sm-6">
@@ -26,14 +26,12 @@ Thêm sản catagory
                         
                         </div>
                     </div>
-                    
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-12 col-sm-12 text-center">
-                            <button type="submit" class="btn btn_submit">Thêm thương hiệu</button>
+                            <button type="submit" class="btn btn_submit">Cập nhật thương hiệu</button>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>

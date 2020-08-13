@@ -36,13 +36,6 @@ Danh sách người dùng
                                     aria-controls="datatable-responsive" value="{{ \Request::get('search')}}">
                                     </div>
                                     <div class="col-sm-3">
-                                    <select class="form-control" name="role" id="role">   
-                                        <option value="">Chọn quyền</option>
-                                        <option value="1">Quản trị viên</option>
-                                        <option value="2">Chủ shop</option>
-                                    </select>
-                                    </div>
-                                    <div class="col-sm-3">
                                     <select class="form-control" name="status" id="status">   
                                         <option value="">Trạng thái</option>
                                         <option value="1">Đang hoạt động</option>

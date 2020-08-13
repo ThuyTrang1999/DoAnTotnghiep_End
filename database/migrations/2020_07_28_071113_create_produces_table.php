@@ -16,6 +16,7 @@ class CreateProducesTable extends Migration
         Schema::create('produces', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique;
+            $table->integer('number');
             $table->string('unit');
             $table->string('SKU');
             $table->text('desc');

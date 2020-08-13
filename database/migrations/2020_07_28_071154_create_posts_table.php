@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->text('short_desc');
             $table->text('desc');
             $table->integer('author_id')->unsigned();
+            $table->string('Hinh');
             $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('status');
             $table->timestamps();

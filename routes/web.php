@@ -151,6 +151,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', 'CustomerController@index')->name('listCustomer')->middleware('auth');
             Route::get('add-customer','CustomerController@create')->name('them-moi-customer');
             Route::post('add-sub_category/create','CustomerController@store')->name('xu-ly-them-moi');
+            Route::get('cap-nhat/{id}','CustomerController@edit')->name('cap-nhat');
+            Route::post('cap-nhat/{id}','CustomerController@update')->name('xu-ly-cap-nhat');
         });
     });
 

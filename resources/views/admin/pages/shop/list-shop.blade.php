@@ -96,7 +96,11 @@ list shop
                                                         <img src="upload/banner/{{$vend->banner}}" alt=""
                                                             style="height: 50px; width: 100px;">
                                                     </td>
-                                                    <td>{{$vend->status}}</td>
+                                                    @if($vend->status==1)
+                                                    <td class="text-success">Đang hoạt động</td>
+                                                    @else($vend->status==2)
+                                                    <td class="text-danger">Không hoạt động</td>
+                                                    @endif
                                                     <td class="text-center">
                                                         <a href="{{route('vendor.cap-nhat',['id'=>$vend->id])}}"
                                                             class="btn btn-warning">

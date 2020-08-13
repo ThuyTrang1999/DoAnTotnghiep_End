@@ -67,7 +67,11 @@ Danh sách category
                                                 <tr role="row" class="odd">
                                                     <td>{{$cate -> cate_name}}</td>
                                                     <td>{{$cate -> alilas}}</td>
-                                                    <td>{{$cate -> status}}</td>
+                                                    @if($cate->status==1)
+                                                    <td class="text-success">Đang hoạt động</td>
+                                                    @else($cate->status==2)
+                                                    <td class="text-danger">Không hoạt động</td>
+                                                    @endif
                                                     <td class="text-center">
                                                     <a href="{{route('category.cap-nhat',['id'=>$cate->id])}}" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                        
