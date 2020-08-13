@@ -153,6 +153,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('add-sub_category/create','CustomerController@store')->name('xu-ly-them-moi');
             Route::get('cap-nhat/{id}','CustomerController@edit')->name('cap-nhat');
             Route::post('cap-nhat/{id}','CustomerController@update')->name('xu-ly-cap-nhat');
+            Route::get('xoa/{id}', 'CustomerController@destroy')->name('xoa');
         });
     });
 

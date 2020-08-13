@@ -10,7 +10,7 @@ Danh sách sản phẩm
         <div class="x_panel">
             <div class="x_title">
                 <h2>Danh sách sản phẩm</h2>
-                
+
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -21,42 +21,45 @@ Danh sách sản phẩm
                                 class="dataTables_wrapper container-fluid dt-bootstrap no-footer">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                    <a href="{{route('product.them-moi')}}" class="btn bg_btnAdd">Add product &nbsp;<i class="fa fa-plus" aria-hidden="true"></i></a>
+                                        <a href="{{route('product.them-moi')}}" class="btn bg_btnAdd">Add product
+                                            &nbsp;<i class="fa fa-plus" aria-hidden="true"></i></a>
                                     </div>
                                     <div class="col-sm-6">
 
                                     </div>
                                 </div>
-                                <form action="{{route('product.listProduct')}}" method="get" role="search"> 
+                                <form action="{{route('product.listProduct')}}" method="get" role="search">
                                     <div class="col-sm-3">
-                                    <input name="search" id="search" type="text" class="form-control input-sm" placeholder="Search ..."
-                                    aria-controls="datatable-responsive" value="{{ \Request::get('search')}}">
+                                        <input name="search" id="search" type="text" class="form-control input-sm"
+                                            placeholder="Search ..." aria-controls="datatable-responsive"
+                                            value="{{ \Request::get('search')}}">
 
                                     </div>
                                     <div class="col-sm-3">
-                                    <select class="form-control" name="cate" id="cate">   
-                                        <option value="">danh mục</option>
-                                        @if($categories)
+                                        <select class="form-control" name="cate" id="cate">
+                                            <option value="">danh mục</option>
+                                            @if($categories)
                                             @foreach($categories as $category)
                                             <option value="{{$category->id}}"> {{$category->cate_name}}</option>
                                             @endforeach
-                                        @endif
-                                    </select>
+                                            @endif
+                                        </select>
                                     </div>
                                     <div class="col-sm-3">
-                                    <select class="form-control" name="status" id="status">   
-                                       
-                                        
+                                        <select class="form-control" name="status" id="status">
+
+
                                             <option value="">Tất cả</option>
                                             <option value="1">Đang hoạt động</option>
                                             <option value="0">Không hoạt động</option>
-                                        
-                                    </select>
+
+                                        </select>
                                     </div>
                                     <div class="col-sm-3">
-                                    <button type="sumit" class="btn btn-primary">Search<i class="fa fa-search" aria-hidden="true"></i></button>
+                                        <button type="sumit" class="btn btn-primary">Search<i class="fa fa-search"
+                                                aria-hidden="true"></i></button>
                                     </div>
-                                    </form>
+                                </form>
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <table id="datatable-responsive"
@@ -79,7 +82,7 @@ Danh sách sản phẩm
                                                     <th class="sorting" tabindex="0"
                                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                                         style="width: 176px;">
-                                                     Thương hiệu</th>
+                                                        Thương hiệu</th>
                                                     <th class="sorting" tabindex="0"
                                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                                         style="width: 176px;">
@@ -95,7 +98,8 @@ Danh sách sản phẩm
                                                     <th class="sorting" tabindex="0"
                                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                                         style="width: 166px;"
-                                                        aria-label="E-mail: activate to sort column ascending">Mô tả ngắn
+                                                        aria-label="E-mail: activate to sort column ascending">Mô tả
+                                                        ngắn
                                                     </th>
                                                     <th class="sorting" tabindex="0"
                                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
@@ -121,11 +125,12 @@ Danh sách sản phẩm
                                                     <th class="sorting" tabindex="0"
                                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                                         style="width: 166px;"
-                                                        aria-label="E-mail: activate to sort column ascending">Trạng thái
+                                                        aria-label="E-mail: activate to sort column ascending">Trạng
+                                                        thái
                                                     </th>
                                                     <th tabindex="0" aria-controls="datatable-responsive" rowspan="1"
                                                         colspan="1" style="width: 81px;" aria-sort="ascending">
-                                                        </th>
+                                                    </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -136,10 +141,10 @@ Danh sách sản phẩm
                                                     <td>{{$prod->SKU}}</td>
                                                     <td></td>
                                                     <td>
-                                                    
+
                                                         <img src="upload/product/{{$prod->url}}" alt=""
                                                             style="width: 50px; height: 50px;">
-                                                        
+
                                                     </td>
                                                     <td>{{$prod->desc}}</td>
                                                     <td>{{$prod->short_desc}}</td>
@@ -155,8 +160,13 @@ Danh sách sản phẩm
                                                     <td class="text-danger">Không hoạt động</td>
                                                     @endif
                                                     <td class="text-center">
-                                                        <a href="{{route('product.cap-nhat',['id'=>$prod->id])}}" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                       <a href="{{route('product.xoa',['id'=>$prod->id])}}" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa???')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                        <a href="{{route('product.cap-nhat',['id'=>$prod->id])}}"
+                                                            class="btn btn-warning"><i class="fa fa-pencil-square-o"
+                                                                aria-hidden="true"></i></a>
+                                                        <a href="{{route('product.xoa',['id'=>$prod->id])}}"
+                                                            class="btn btn-danger"
+                                                            onclick="return confirm('Bạn có chắc muốn xóa???')"><i
+                                                                class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
                                                 @endforeach

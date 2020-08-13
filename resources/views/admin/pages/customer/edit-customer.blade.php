@@ -52,6 +52,20 @@ Cập nhật người dùng
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group row col-md-6 col-sm-6">
+                            <label class="control-label col-md-2 col-sm-2 ">Trạng thái</label>
+                            <div class="col-md-10 col-sm-10 ">
+                                <select class="select2_single form-control" name="status" tabindex="-1">
+                                    @if($cus -> status == 1){
+                                    <option selected value="1">Hoạt động</option>
+                                    <option value="2">Không hoạt động</option>}
+                                    @else
+                                    <option selected value="2">Không hoạt động</option>
+                                    <option value="1">Hoạt động</option>
+                                    @endif
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="ln_solid"></div>
                     <div class="form-group">

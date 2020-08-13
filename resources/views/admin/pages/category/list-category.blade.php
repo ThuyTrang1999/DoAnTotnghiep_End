@@ -74,8 +74,7 @@ Danh sách category
                                                     @endif
                                                     <td class="text-center">
                                                     <a href="{{route('category.cap-nhat',['id'=>$cate->id])}}" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                       
-                                                        <a href="{{route('category.xoa',['id'=>$cate->id])}}" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa???')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    <a href="{{route('category.xoa',['id'=>$cate->id])}}" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa???')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
                                                 @endforeach

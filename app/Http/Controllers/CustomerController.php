@@ -42,7 +42,13 @@ class CustomerController extends Controller
         $dataCustomer = customer::all();
         return view('client.index', compact('dataCustomer'));
     }
-
+    public function destroy($id)
+    {
+         $Addcustomers = customer::find($id);
+         $Addcustomers->status = "2";
+         $Addcustomers->save();
+         return redirect()->route('customer.listCustomer');
+    }
     public function profileClient($id)
     {
 
@@ -104,30 +110,27 @@ class CustomerController extends Controller
         
         $email = $request->emailClient;
         $password = $request->passClient; 
-
+        $status = 1;
         $this->validate($request, [ 
             'emailClient' => 'required',
             'passClient' => 'required|max:20|min:4',
 
         ], [
             'emailClient.required' => 'Bạn chưa nhập email', 
-            
             'passClient.required' => 'Bạn chưa nhập mật khẩu.',
             'passClient.min' => 'Mật khẩu phải lớn hơn 4 kí tự.',
             'passClient.max' => 'Mật khẩu phải nhỏ hơn 20 kí tự.',    
-        
         ]);
                        
-        if (Auth::guard('customer')->attempt(['email'=>$email , 'password'=>$password]) ) {
+        if (Auth::guard('customer')->attempt(['email'=>$email , 'password'=>$password, 'status'=>$status])  )
+        {
             return redirect()->route('client.index'); 
-            }
+        }
         
-            else{
-                return redirect()->route('dang-nhap-client');
-            }
-        
-            
-        
+        else
+        {
+            return redirect()->route('dang-nhap-client');
+        }
     }
     public function dangKy(){
         
@@ -253,6 +256,7 @@ class CustomerController extends Controller
     public function update(Request $request,$id)
     {
         $cus = customer::find($id);
+        $cus->status = $request->status; 
         $cus->role = $request->role; 
         $cus->save();
         return redirect()->route('customer.listCustomer',compact('cus')); 

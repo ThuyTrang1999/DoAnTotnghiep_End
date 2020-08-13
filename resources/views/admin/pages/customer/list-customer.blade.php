@@ -143,10 +143,7 @@ list custommer
                                                         <a href="{{route('customer.cap-nhat',['id'=>$cus->id])}}"
                                                             class="btn btn-warning"><i class="fa fa-pencil-square-o"
                                                                 aria-hidden="true"></i></a>
-                                                        <button class="btn btn-danger">
-                                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                                        </button>
-
+                                                        <a href="{{route('customer.xoa',['id'=>$cus->id])}}" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa???')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
                                                 @endforeach

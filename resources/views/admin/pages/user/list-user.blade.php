@@ -13,11 +13,11 @@ Danh sách người dùng
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-            @if(session('thongbao'))
+                @if(session('thongbao'))
                 <div class="alert alert-success">
-                    {{session('thongbao')}}       
+                    {{session('thongbao')}}
                 </div>
-            @endif
+                @endif
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box table-responsive">
@@ -25,28 +25,31 @@ Danh sách người dùng
                                 class="dataTables_wrapper container-fluid dt-bootstrap no-footer">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                    <a href="{{route('user.them-moi')}}" class="btn bg_btnAdd">Thêm người dùng &nbsp;<i class="fa fa-plus" aria-hidden="true"></i></a>
+                                        <a href="{{route('user.them-moi')}}" class="btn bg_btnAdd">Thêm người dùng
+                                            &nbsp;<i class="fa fa-plus" aria-hidden="true"></i></a>
                                     </div>
                                     <div class="col-sm-6">
                                     </div>
                                 </div>
-                                <form action="{{route('user.listUser')}}" method="get" role="search"> 
+                                <form action="{{route('user.listUser')}}" method="get" role="search">
                                     <div class="col-sm-3">
-                                    <input name="search" id="search" type="text" class="form-control input-sm" placeholder="Tìm kiếm"
-                                    aria-controls="datatable-responsive" value="{{ \Request::get('search')}}">
+                                        <input name="search" id="search" type="text" class="form-control input-sm"
+                                            placeholder="Tìm kiếm" aria-controls="datatable-responsive"
+                                            value="{{ \Request::get('search')}}">
                                     </div>
                                     <div class="col-sm-3">
-                                    <select class="form-control" name="status" id="status">   
-                                        <option value="">Trạng thái</option>
-                                        <option value="1">Đang hoạt động</option>
-                                        <option value="2">Không hoạt động</option>
-                                    </select>
+                                        <select class="form-control" name="status" id="status">
+                                            <option value="">Trạng thái</option>
+                                            <option value="1">Đang hoạt động</option>
+                                            <option value="2">Không hoạt động</option>
+                                        </select>
                                     </div>
                                     <div class="col-sm-3">
-                                    <button type="sumit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                        <button type="sumit" class="btn btn-primary"><i class="fa fa-search"
+                                                aria-hidden="true"></i></button>
                                     </div>
-                                    </form>
-                                    <div class="row">
+                                </form>
+                                <div class="row">
                                     <div class="col-sm-12">
                                         <table id="datatable-responsive"
                                             class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline"
@@ -81,13 +84,14 @@ Danh sách người dùng
                                                     <th class="sorting" tabindex="0"
                                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                                         style="width: 43px;"
-                                                        aria-label="Extn.: activate to sort column ascending">Điện thoại</th>
+                                                        aria-label="Extn.: activate to sort column ascending">Điện thoại
+                                                    </th>
                                                     <th class="sorting" tabindex="0"
                                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                                         style="width: 166px;"
                                                         aria-label="E-mail: activate to sort column ascending">Địa chỉ
                                                     </th>
-                                                   
+
                                                     <th class="sorting" tabindex="0"
                                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                                         style="width: 166px;"
@@ -105,7 +109,8 @@ Danh sách người dùng
                                                     <th class="sorting" tabindex="0"
                                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                                         style="width: 166px;"
-                                                        aria-label="E-mail: activate to sort column ascending">Trạng thái
+                                                        aria-label="E-mail: activate to sort column ascending">Trạng
+                                                        thái
                                                     </th>
                                                     <th class="sorting" tabindex="0"
                                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
@@ -115,11 +120,11 @@ Danh sách người dùng
                                                     <th class="sorting" tabindex="0"
                                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                                         style="width: 166px;"
-                                                        aria-label="E-mail: activate to sort column ascending">Ngày cập nhật
+                                                        aria-label="E-mail: activate to sort column ascending">Ngày cập
+                                                        nhật
                                                     </th>
-                                                    <th  tabindex="0"
-                                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                                        style="width: 81px;" aria-sort="ascending">
+                                                    <th tabindex="0" aria-controls="datatable-responsive" rowspan="1"
+                                                        colspan="1" style="width: 81px;" aria-sort="ascending">
                                                     </th>
                                                 </tr>
                                             </thead>
@@ -155,13 +160,18 @@ Danh sách người dùng
                                                     <td>{{$ur -> created_at}}</td>
                                                     <td>{{$ur -> updated_at}}</td>
                                                     <td class="text-center">
-                                                        <a href="{{route('user.cap-nhat',['id'=>$ur->id])}}" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                        <a href="{{route('user.xoa',['id'=>$ur->id])}}" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa???')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                        <a href="{{route('user.cap-nhat',['id'=>$ur->id])}}"
+                                                            class="btn btn-warning"><i class="fa fa-pencil-square-o"
+                                                                aria-hidden="true"></i></a>
+                                                        <a href="{{route('user.xoa',['id'=>$ur->id])}}"
+                                                            class="btn btn-danger"
+                                                            onclick="return confirm('Bạn có chắc muốn xóa???')"><i
+                                                                class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
                                                 @endforeach
                                                 @csrf
-                                               
+
                                             </tbody>
                                         </table>
                                         {!! $listUsers->links() !!}
