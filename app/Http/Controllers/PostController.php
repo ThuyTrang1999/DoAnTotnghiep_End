@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\post;
 use App\user;
 
@@ -13,9 +14,14 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(request $request)
     {
-        $listPost = post::paginate(3);
+        $result  = DB::table('posts');
+        if($request->search){
+            $result->where('posts.title', 'like', '%' .$request->search. '%')->get();
+        }
+
+        $listPost = $result->paginate(3);
         return view('admin.pages.post.list-post',['listPost'=>$listPost]);
     }
     public function create()
@@ -152,7 +158,8 @@ class PostController extends Controller
     public function destroy($id)
     {
         $addPost = post::find($id);
-        $addPost->delete();
+        $addPost->status = 2;
+        $addPost->save();
         return redirect()->route('post.listPost');
     }
 }

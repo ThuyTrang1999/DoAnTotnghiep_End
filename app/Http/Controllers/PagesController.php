@@ -12,6 +12,7 @@ use App\Cart;
 use App\customer;
 use App\bill;
 use App\bill_detail;
+use App\post;
 use Session;
 
 class PagesController extends Controller
@@ -83,8 +84,11 @@ class PagesController extends Controller
         ->join('vendors', 'produces.vendor_id', '=', 'vendors.id')
         ->join('imgs', 'produces.id', '=', 'imgs.produce_id')
         ->where('produces.category_id','=','4')->get();
-        
-        return view('client.pages.index', compact('listProduces','prouctTop','Hot_KM', 'phoneProduct','laptopProduct','oClockProduct', 'accesProduct', 'MostProduct'));       
+        // tin tức
+        $new_Data = DB::table('posts')
+        ->orderByDesc('id')->paginate(2);
+
+        return view('client.pages.index', compact('listProduces','prouctTop','Hot_KM', 'phoneProduct','laptopProduct','oClockProduct', 'accesProduct', 'MostProduct','new_Data'));       
     }
     
 
@@ -152,7 +156,13 @@ class PagesController extends Controller
     public function contact(){
         return view('client.pages.contact');
     }
+   // gioi gioi thieu
+   public function news(){
 
+    $new_Data=DB::table('posts')->where('posts.status', '=', '1')->get();
+
+    return view('client.pages.news', compact('new_Data'));
+}
     // gioi gioi thieu
     public function about(){
         return view('client.pages.about');

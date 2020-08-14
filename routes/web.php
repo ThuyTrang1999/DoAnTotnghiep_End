@@ -232,6 +232,7 @@ Route::prefix('shop')->group(function(){
 
 Route::get('/cua-hang','ShopPagesController@show')->name('cua-hang');
 
+Route::get('/tin-tuc','PagesController@news')->name('news');
 
 Route::get('/gioi-thieu','PagesController@about')->name('about');
 

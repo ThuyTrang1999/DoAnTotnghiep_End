@@ -27,15 +27,17 @@ list shop
 
                                     </div>
                                 </div>
-                                <form action="{{route('vendor.listVendor')}}" method="get" role="search"> 
+                                <form action="{{route('vendor.listVendor')}}" method="get" role="search">
                                     <div class="col-sm-3">
-                                    <input name="search" id="search" type="text" class="form-control input-sm" placeholder="Search ..."
-                                    aria-controls="datatable-responsive" value="{{ \Request::get('search')}}">
+                                        <input name="search" id="search" type="text" class="form-control input-sm"
+                                            placeholder="Search ..." aria-controls="datatable-responsive"
+                                            value="{{ \Request::get('search')}}">
                                     </div>
                                     <div class="col-sm-3">
-                                    <button type="sumit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                        <button type="sumit" class="btn btn-primary"><i class="fa fa-search"
+                                                aria-hidden="true"></i></button>
                                     </div>
-                                    </form>
+                                </form>
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <table id="datatable-responsive"
@@ -83,7 +85,7 @@ list shop
                                                 @foreach ($listVendors as $vend)
                                                 <tr role="row" class="odd">
                                                     <td>
-                                                        {{$vend->name}} 
+                                                        {{$vend->name}}
                                                     </td>
                                                     <td>{{$vend->shop_name}}</td>
                                                     <td class="text-center">

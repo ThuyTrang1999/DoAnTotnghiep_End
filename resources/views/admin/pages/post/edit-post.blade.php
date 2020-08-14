@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-Cập nhật cửa hàng
+Thêm bài viết
 @endsection
 
 @section('main_content')
@@ -9,70 +9,85 @@ Cập nhật cửa hàng
     <div class="col-md-12" style="margin: 0 auto;">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Cập nhật  cửa hàng </h2>
-                <form action="{{route('vendor.xu-ly-cap-nhat',['id'=>$addVendor->id])}}" method="POST"  enctype="multipart/form-data">
+                <h2> Cập nhật Bài viết </h2><br>
+                <form action="{{route('post.xu-ly-cap-nhat',['id'=>$addPost->id])}}" method="POST"
+                    enctype="multipart/form-data">
             </div>
             @csrf
+            @if (count($errors) > 0)
+            <ul>
+                @foreach ($errors->all() as $error)
+                <div class='alert alert-danger'>
+                    <li>{{ $error }}</li>
+                </div>
+                @endforeach
+            </ul>
+            @endif
+            @if(session('thongbao'))
+            <div class='alert alert-success'>
+                {{section('thongbao')}}
+            </div>
+            @endif
             <div class="x_content">
                 <form class="form-horizontal form-label-left" method="POST" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group row col-md-6 col-sm-6">
-                            <label class="control-label col-md-2 col-sm-2 ">Shop name</label>
+                            <label class="control-label col-md-2 col-sm-2 ">Tiêu đề</label>
                             <div class="col-md-10 col-sm-10 ">
-                                <input type="text" class="form-control" name="shop_name" placeholder="Shop name....."
-                                    @if(isset($addVendor)) value="{{ $addVendor->shop_name }}" @endif>
+                                <input type="text" name="title" class="form-control" placeholder="Nhập tiêu đề"
+                                    @if(isset($addPost)) value="{{ $addPost->title }}" @endif>
                             </div>
                         </div>
                         <div class="form-group row col-md-6 col-sm-6">
-                            <label class="control-label col-md-2 col-sm-2">Username</label>
+                            <label class="control-label col-md-2 col-sm-2 ">Hình ảnh</label>
                             <div class="col-md-10 col-sm-10 ">
-                                <select name="id_user" id="" class="form-control" @if(isset($addVendor))
-                                    value="{{$addVendor->id_user}}" @endif>
-                                    @foreach($dataUser as $data)
-                                    <option @if(isset($addVendor)) @if($data->id == $addVendor->user_id) selected
-                                        @endif value="{{ $data->id}}">{{ $data->user_name}}
-                                    </option>
-                                    @endif value="{{ $data->id}}">{{ $data->user_name}}
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group row col-md-6 col-sm-6">
-                            <label class="control-label col-md-2 col-sm-2 ">Banner</label>
-                            <div class="col-md-10 col-sm-10 ">
-                                <input type="file" name="bannerFile" id="bannerFile" >
-                                <img @if(isset($addVendor))
-                                    src="../../upload/banner/{{$addVendor->banner}}" @endif alt="img_banner" id="img_banner" style="height: 50px; width: 70px;">
-                            </div>
-                        </div>
-                        <div class="form-group row col-md-6 col-sm-6">
-                            <label class="control-label col-md-2 col-sm-2 ">Logo</label>
-                            <div class="col-md-10 col-sm-10 ">
-                                <input type="file" name="logoFile" >
-                                <img  @if(isset($addVendor))
-                                    src="../../upload/logo/{{$addVendor->logo}}" @endif alt="img_logo" style="height: 50px; width: 70px;">
+                                <input type="file" name="Hinh" @if(isset($addPost)) value="{{ $addPost->Hinh }}"
+                                    @endif />
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
+
                         <div class="form-group row col-md-6 col-sm-6 ">
-                            <label class="control-label col-md-2 col-sm-2 ">Desc</label>
+                            <label class="control-label col-md-2 col-sm-2 ">Mô tả</label>
                             <div class="col-md-10 col-sm-10 ">
-                                <textarea name="desc" class="form-control" id="" cols="10" rows="5"
-                                    placeholder="Desc.....">@if(isset($addVendor)) {{ $addVendor->desc}}
+                                <textarea name="short_desc" id="" cols="10" rows="5" class="form-control"
+                                    placeholder="Nhập mô tả">@if(isset($addPost)) {{ $addPost->short_desc}}
                                     @endif</textarea>
                             </div>
                         </div>
                         <div class="form-group row col-md-6 col-sm-6 ">
-                            <label class="control-label col-md-2 col-sm-2 ">Status</label>
+                            <label class="control-label col-md-2 col-sm-2 ">Nội dung</label>
                             <div class="col-md-10 col-sm-10 ">
-                                <select name="status" id="" class="form-control" @if(isset($addVendor))
-                                    value="{{$addVendor->status}}" @endif>
-                                    <option value="1" >Đang kích hoạt</option>
-                                    <option value="2">Ngưng kích hoạt</option>
+                                <textarea name="desc" id="" cols="10" rows="5" class="form-control"
+                                    placeholder="Nhập nội dung">@if(isset($addPost)) {{ $addPost->desc}} @endif</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group row col-md-6 col-sm-6 ">
+                            <label class="control-label col-md-2 col-sm-2 ">Tài khoản</label>
+                            <div class="col-md-10 col-sm-10 ">
+                                <select name="pst_user" class="form-control">
+                                    @foreach($dataUser as $dataU)
+                                    <option value="{{$dataU->id}}">{{ $dataU->user_name  }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row col-md-6 col-sm-6 ">
+                            <label class="control-label col-md-2 col-sm-2 ">Trạng thái</label>
+                            <div class="col-md-10 col-sm-10 ">
+                                <select name="status" class="form-control">
+                                    @if($addPost->status == 1){
+                                    <option selected value="1">Hoạt động</option>
+                                    <option value="2">Không hoạt động</option>}
+                                    @else
+                                    <option selected value="2">Không hoạt động</option>
+                                    <option value="1">Hoạt động</option>
+                                    @endif
                                 </select>
                             </div>
                         </div>
@@ -81,7 +96,7 @@ Cập nhật cửa hàng
                     <div class="form-group">
                         <div class="col-md-12 col-sm-12 text-center">
                             <button type="submit" class="btn btn_submit">
-                          Cập nhật 
+                                Thêm bài viêt
                             </button>
                         </div>
                     </div>

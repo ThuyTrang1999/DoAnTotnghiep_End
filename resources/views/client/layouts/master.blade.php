@@ -55,10 +55,7 @@
         <!-- Header Area End Here -->
         @include('client.layouts.menu')
         <!-- content -->
-       
              @yield('content')
-       
-      
         <!-- end content -->
         <!-- Begin Footer Area -->
         @include('client.layouts.footer')
