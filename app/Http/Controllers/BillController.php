@@ -19,15 +19,14 @@ class BillController extends Controller
 {
     public function index(Request $request)
     {
-        //$listBrand = brand::all();
-        $result = DB::table('bills')
+        $result = DB::table('bills')->select('bills.id','customers.name','vendors.shop_name','payment','total','bills.created_at','bills.status as st')
         ->join('customers', 'bills.cus_id', '=', 'customers.id')
-        ->join('vendors', 'bills.vendor_id', '=', 'vendors.id');
+        ->join('vendors', 'bills.vendor_id', '=', 'vendors.id'); 
         if($request->search){
-            $result->where('bills.', 'like', '%' .$request->search. '%');
+            $result->where('bills.', 'like', '%' .$request->search. '%')->get();
         }
-        $listBill= $result->get();
-        // dd($listBill);
+       
+        $listBill = $result->paginate(5);
         return view('admin.pages.bill.bill', compact('listBill'));
 
     }

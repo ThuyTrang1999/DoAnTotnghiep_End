@@ -68,11 +68,16 @@ Cập nhật cửa hàng
                         <div class="form-group row col-md-6 col-sm-6 ">
                             <label class="control-label col-md-2 col-sm-2 ">Status</label>
                             <div class="col-md-10 col-sm-10 ">
-                                <select name="status" id="" class="form-control" @if(isset($addVendor))
-                                    value="{{$addVendor->status}}" @endif>
-                                    <option value="1" >Đang kích hoạt</option>
-                                    <option value="0">Ngưng kích hoạt</option>
+                            <select class="select2_single form-control" name="status" tabindex="-1">
+                                    @if($addVendor->status == 1){
+                                    <option selected value="1">Hoạt động</option>
+                                    <option value="2">Không hoạt động</option>}
+                                    @else
+                                    <option selected value="2">Không hoạt động</option>
+                                    <option value="1">Hoạt động</option>
+                                    @endif
                                 </select>
+                               
                             </div>
                         </div>
                     </div>

@@ -21,7 +21,7 @@ Thêm mới cửa hàng
                             <label class="control-label col-md-2 col-sm-2 ">Shop name</label>
                             <div class="col-md-10 col-sm-10 ">
                                 <input type="text" class="form-control" name="shop_name" placeholder="Shop name....."
-                                    @if(isset($addVendor)) value="{{ $addVendor->shop_name }}" @endif>
+                                    >
                             </div>
                         </div>
                         <div class="form-group row col-md-6 col-sm-6">
@@ -66,10 +66,10 @@ Thêm mới cửa hàng
                         <div class="form-group row col-md-6 col-sm-6 ">
                             <label class="control-label col-md-2 col-sm-2 ">Status</label>
                             <div class="col-md-10 col-sm-10 ">
-                                <select name="status" id="" class="form-control" @if(isset($addVendor))
-                                    value="{{$addVendor->status}}" @endif>
-                                    <option value="1" >Đang kích hoạt</option>
-                                    <option value="2">Ngưng kích hoạt</option>
+                            <select class="select2_single form-control" name="status" tabindex="-1"
+                                    @if(isset($addVendor)) value="{{ $addVendor->status }}" @endif>
+                                    <option value="1">Hoạt động</option>
+                                    <option value="2">Không hoạt động</option>
                                 </select>
                             </div>
                         </div>

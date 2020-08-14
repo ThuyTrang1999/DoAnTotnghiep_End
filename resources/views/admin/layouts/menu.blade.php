@@ -48,13 +48,7 @@
                     <li><a href="{{route('brand.listBrand')}}">Danh sách thương hiệu</a></li>
                   </ul>
                 </li>
-                <li><a><i class="fa fa-bar-chart-o"></i> Thống kê <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu">
-                    <li><a href="{{route('admin.list-statistical')}}">Xem thống kê</a></li>
-                    <li><a href="{{route('admin.add-statistical')}}">In thống kê</a></li>
-                    
-                  </ul>
-                </li>
+               
                 <li><a><i class="fa fa-newspaper-o" aria-hidden="true"></i> Bài viết<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                   <li><a href="{{route('post.them-moi-post')}}" style="display: none;">Thêm bài viết</a></li>
@@ -69,7 +63,11 @@
                     
                   </ul>
                 </li>
-                
+                <li><a><i class="fa fa-bar-chart-o"></i> Thống kê <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="{{route('admin.thongke')}}">Danh sách thống kê</a></li>
+                  </ul>
+                </li>
                
               </ul>
             </div>

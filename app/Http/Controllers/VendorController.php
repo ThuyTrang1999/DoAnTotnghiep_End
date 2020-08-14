@@ -15,13 +15,13 @@ class VendorController extends Controller
      */
     public function index(Request $request)
     {
-        $result = DB::table('vendors')->join('customers', 'vendors.cus_id', '=', 'customers.id'); 
+        $result = DB::table('vendors')->select('vendors.status as tl','vendors.shop_name','vendors.desc_vendor','vendors.logo','vendors.banner','vendors.id','name')->join('customers', 'vendors.cus_id', '=', 'customers.id'); 
         if($request->search){
             $result->where('vendors.shop_name', 'like', '%' .$request->search. '%')->get();
         }
         $listVendors = $result->paginate(3);
         return view('admin.pages.shop.list-shop',['listVendors'=>$listVendors]);
-
+        
     }
     public function create()
     {
@@ -83,7 +83,7 @@ class VendorController extends Controller
     {   $addVendor = vendor::find($id);
         $dataUser = customer::all();
         
-         return view('admin.pages.shop.edit-shop', compact('addVendor', 'dataUser'));    
+        return view('admin.pages.shop.edit-shop', compact('addVendor', 'dataUser'));    
     }
 
     /**
@@ -126,7 +126,8 @@ public function update(Request $request, $id)
     public function destroy($id)
     {
         $deleteVendor = vendor::find($id);
-        $deleteVendor->delete();
+        $deleteVendor->status = 2;
+        $deleteVendor->save();
         return redirect()->route('vendor.listVendor');
     }
 }

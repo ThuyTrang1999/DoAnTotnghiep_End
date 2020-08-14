@@ -57,9 +57,8 @@ Route::middleware(['auth'])->group(function () {
                 return view('admin.pages.statistical.add-statistical');
             })->name('add-statistical');
 
-            Route::get('/list-statistical', function () {
-                return view('admin.pages.statistical.list-statistical');
-            })->name('list-statistical');
+            Route::get('/list-statistical', 'ThongkeController@thongkeadmin')->name('thongke');
+            
 
             // setting
             Route::get('/setting', function () {
@@ -170,6 +169,7 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
+// thống kê
 Route::prefix('thongke')->group(function(){
     Route::name('thongke.')->group(function(){
         Route::get('/','ThongkeController@danhthu')->name('danhthu');

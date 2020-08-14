@@ -78,7 +78,7 @@ list shop
                                                     </th>
                                                     <th tabindex="0" aria-controls="datatable-responsive" rowspan="1"
                                                         colspan="1" style="width: 81px;" aria-sort="ascending">
-                                                        Chức năng</th>
+                                                        </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -98,9 +98,9 @@ list shop
                                                         <img src="upload/banner/{{$vend->banner}}" alt=""
                                                             style="height: 50px; width: 100px;">
                                                     </td>
-                                                    @if($vend->status==1)
+                                                    @if($vend->tl == 1)
                                                     <td class="text-success">Đang hoạt động</td>
-                                                    @else($vend->status==2)
+                                                    @else($vend->tl == 2)
                                                     <td class="text-danger">Không hoạt động</td>
                                                     @endif
                                                     <td class="text-center">
